@@ -9,15 +9,5 @@ class Branch extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'link',
-        'admin_link',
-        'account',
-        'password',
-        'name',
-        'image',
-        'address',
-        'phone',
-        'email',
-    ];
+     protected $guarded = [];
 }

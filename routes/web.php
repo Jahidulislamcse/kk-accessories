@@ -3,6 +3,7 @@
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessageController;
@@ -64,6 +65,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
             Route::post('/', 'store')->name('store');
             Route::post('/{service}', 'update')->name('update');
             Route::delete('/{service}', 'destroy')->name('destroy');
+        });
+
+        Route::prefix('categories')->name('categories.')->controller(CategoryController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/', 'store')->name('store');
+            Route::get('/{category}/edit', 'edit')->name('edit');
+            Route::put('/{category}', 'update')->name('update');
+            Route::delete('/{category}', 'destroy')->name('destroy');
         });
     });
 });

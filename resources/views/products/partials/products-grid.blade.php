@@ -1,6 +1,6 @@
 @foreach($categories as $category)
     @if($category->products->count())
-        <div class="mb-12">
+        <div class="mb-12 px-2">
             <h2 class="text-2xl font-bold text-gray-900 mb-6">{{ $category->name }}</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 @foreach($category->products as $product)
@@ -21,7 +21,7 @@
                         </div>
                         <div class="flex-1 p-4 flex flex-col justify-between">
                             <h3 class="mt-2 text-xl font-semibold text-gray-900">{{ Str::limit($product->name, 20) }}</h3>
-                            <p class="mt-3 text-base text-gray-500">{{ Str::limit($product->description, 30) }}</p>
+                            <p class="mt-3 text-base text-gray-500">{{ Str::limit($product->description, 25) }}</p>
                         </div>
                     </div>
                 @endforeach

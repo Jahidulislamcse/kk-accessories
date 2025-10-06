@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Services\ServiceService;
 
@@ -19,6 +20,14 @@ class ServiceController extends Controller
     {
         $services = Service::latest()->get();
         return view('admin.services.index', compact('services'));
+    }
+
+    public function services()
+    {
+        $settings = Setting::first();
+        $services  = Service::all();
+
+        return view('services',compact('settings', 'services'));
     }
 
     public function store(Request $request)

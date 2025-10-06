@@ -21,10 +21,10 @@
             </div>
 
             <nav class="ml-nav hidden md:flex items-center gap-12">
-                <a class="text-gray-600 hover:text-[var(--primary-color)] font-medium" href="{{ route('home')}}">Home</a>
-                <a class="text-gray-600 hover:text-[var(--primary-color)] font-medium" href="{{ route('products.user')}}">Products</a>
-                <a class="text-gray-600 hover:text-[var(--primary-color)] font-medium" href="#services">Services</a>
-                <a class="text-gray-600 hover:text-[var(--primary-color)] font-medium" href="{{ route('contact')}}">Contact</a>
+                <a class="text-gray-700 hover:text-[var(--primary-color)] font-medium" href="{{ route('home')}}">Home</a>
+                <a class="text-gray-700 hover:text-[var(--primary-color)] font-medium" href="{{ route('products.user')}}">Products</a>
+                <a class="text-gray-700 hover:text-[var(--primary-color)] font-medium" href="{{ route('services')}}">Services</a>
+                <a class="text-gray-700 hover:text-[var(--primary-color)] font-medium" href="{{ route('contact')}}">Contact</a>
             </nav>
 
             <div class="flex items-center gap-4">
@@ -44,8 +44,8 @@
         <div id="mobile-menu" class="hidden flex-col mt-4 space-y-3 md:hidden">
             <a class="block text-gray-700 hover:text-[var(--primary-color)] font-medium" href="{{ route('home')}}">Home</a>
             <a class="block text-gray-700 hover:text-[var(--primary-color)] font-medium" href="{{ route('products.user')}}">Products</a>
+            <a class="block text-gray-700 hover:text-[var(--primary-color)] font-medium" href="{{ route('services')}}">Services</a>
             <a class="block text-gray-700 hover:text-[var(--primary-color)] font-medium" href="{{ route('contact')}}">Contact</a>
-            <a class="block text-gray-700 hover:text-[var(--primary-color)] font-medium" href="#services">Services</a>
             <a href="{{ route('login')}}" class="inline-block bg-[var(--primary-color)] text-white px-4 py-2 rounded-md font-medium">
                 Login
             </a>

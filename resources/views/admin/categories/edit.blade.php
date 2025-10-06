@@ -30,7 +30,12 @@
         <div class="mb-3">
             <label class="form-label">Current Image</label><br>
             @if($category->image)
-                <img src="{{ asset('upload/' . $category->image) }}" alt="Category Image" width="100" class="mb-2 rounded">
+                <img 
+                    src="{{ asset('upload/' . $category->image) }}" 
+                    alt="Current Category Image" 
+                    width="120" 
+                    class="mb-2 rounded border"
+                >
             @else
                 <p>No image uploaded.</p>
             @endif
@@ -41,16 +46,42 @@
             <input 
                 type="file" 
                 name="image" 
-                class="form-control"
+                class="form-control" 
+                accept="image/*"
+                onchange="previewNewImage(event)"
             >
             @error('image')
                 <small class="text-danger">{{ $message }}</small>
             @enderror
+
+            <div class="mt-2">
+                <img 
+                    id="newImagePreview" 
+                    src="#" 
+                    alt="New Image Preview" 
+                    width="120" 
+                    class="rounded border" 
+                    style="display:none;"
+                >
+            </div>
         </div>
 
         <button type="submit" class="btn btn-primary">Update</button>
         <a href="{{ route('admin.categories.index') }}" class="btn btn-secondary">Cancel</a>
     </form>
 </div>
-@endsection
 
+<script>
+function previewNewImage(event) {
+    const file = event.target.files[0];
+    const preview = document.getElementById('newImagePreview');
+    if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = 'block';
+    } else {
+        preview.src = '';
+        preview.style.display = 'none';
+    }
+}
+</script>
+@endsection

@@ -36,9 +36,9 @@
     <div class="absolute inset-0 bg-black/30"></div>
 
     <div class="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-10 flex gap-4">
-        <a href="{{ route('branches.user') }}">
+        <a href="{{ route('products.user') }}">
             <button class="inline-flex items-center justify-center rounded-md bg-[var(--primary-color)] px-8 py-3 text-base font-semibold text-white shadow-lg transition-all hover:bg-opacity-90 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2 focus:ring-offset-gray-900">
-                Our Branches
+                Our Products
             </button>
         </a>
 

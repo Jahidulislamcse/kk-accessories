@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -33,8 +34,17 @@ class CategoryController extends Controller
             $imagePath = 'categories/' . $imageName;
         }
 
+        $slug = Str::slug($request->name);
+        $originalSlug = $slug;
+        $count = 1;
+
+        while (Category::where('slug', $slug)->exists()) {
+            $slug = $originalSlug . '-' . $count++;
+        }
+
         Category::create([
             'name'  => $request->name,
+            'slug'  => $slug,
             'image' => $imagePath,
         ]);
 
@@ -65,8 +75,20 @@ class CategoryController extends Controller
             $imagePath = 'categories/' . $imageName;
         }
 
+        $slug = $category->slug;
+        if ($category->name !== $request->name) {
+            $slug = Str::slug($request->name);
+            $originalSlug = $slug;
+            $count = 1;
+
+            while (Category::where('slug', $slug)->where('id', '!=', $category->id)->exists()) {
+                $slug = $originalSlug . '-' . $count++;
+            }
+        }
+
         $category->update([
             'name'  => $request->name,
+            'slug'  => $slug,
             'image' => $imagePath,
         ]);
 

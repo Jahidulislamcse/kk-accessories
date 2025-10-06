@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SliderController;
@@ -21,6 +22,8 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 Route::get('/all-branches', [BranchController::class, 'userBranches'])->name('branches.user');
+Route::get('/kk-products', [ProductController::class, 'userProductsByCategory'])->name('products.user');
+Route::get('/products/{slug}', [ProductController::class, 'show'])->name('products.show');
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -75,6 +78,18 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
             Route::put('/{category}', 'update')->name('update');
             Route::delete('/{category}', 'destroy')->name('destroy');
         });
+
+        Route::prefix('products')->name('products.')->controller(ProductController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/', 'store')->name('store');
+            Route::get('/{product}/edit', 'edit')->name('edit');
+            Route::put('/{product}', 'update')->name('update');
+            Route::delete('/{product}', 'destroy')->name('destroy');
+
+            Route::delete('images/{id}', [ProductController::class, 'destroyImage'])->name('images.destroy');
+        });
+
     });
 });
 

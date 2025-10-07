@@ -16,10 +16,10 @@
 
                     <div class="absolute inset-0 bg-black/30 flex flex-col items-center justify-center text-center px-6">
                         <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-4 animate-fade-in-down">
-                            {{ $slider->heading ?? 'Advancing Healthcare Through Innovation' }}
+                            {{ $slider->heading ?? '' }}
                         </h1>
                         <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-200 mb-8 animate-fade-in-up">
-                            {!! $slider->desc ?? 'Pharma Group is dedicated to developing and delivering high-quality pharmaceutical products that improve patient lives. Our commitment to research and development drives us to create innovative solutions for unmet medical needs.' !!}
+                            {!! $slider->desc ?? '' !!}
                         </p>
                     </div>
 
@@ -33,18 +33,16 @@
     <div class="absolute inset-0 bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('{{ asset('default-hero.jpg') }}')"></div>
     @endif
 
-    <div class="absolute inset-0 bg-black/30"></div>
-
-    <div class="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-10 flex gap-4">
+    <div class="absolute bottom-32 left-1/2 transform -translate-x-1/2 z-10 flex gap-4">
         <a href="{{ route('products.user') }}">
             <button class="inline-flex items-center justify-center rounded-md bg-[var(--primary-color)] px-8 py-3 text-base font-semibold text-white shadow-lg transition-all hover:bg-opacity-90 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2 focus:ring-offset-gray-900">
-                Our Products
+                Products
             </button>
         </a>
 
         <a href="{{ route('contact') }}"
             class="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white/10 backdrop-blur-sm px-8 py-3 text-base font-semibold text-white shadow-lg transition-all hover:bg-white/20 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-900">
-            Contact Us
+            Contact
         </a>
     </div>
 </section>
@@ -85,8 +83,6 @@
         </div>
     </div>
 </section>
-
-
 
 <section  class="py-20 bg-white">
     <div class="container mx-auto px-6">

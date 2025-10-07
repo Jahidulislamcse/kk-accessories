@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function userProductsByCategory(Request $request)
     {
         $setting = Setting::first();
-        $allCategories = Category::select('name', 'slug')->get();
+        $allCategories = Category::select('name', 'slug', 'image')->get();
 
         if ($request->ajax()) {
             $categorySlug = $request->input('category');

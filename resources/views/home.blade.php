@@ -4,7 +4,7 @@
 
 @section('content')
 
-<section class="relative h-[calc(100vh-80px)] min-h-[600px] flex items-center justify-center text-white">
+<section class="relative h-[90vh] min-h-[400px] flex items-center justify-center text-white">
 
     @if($sliders->count())
     <div class="absolute inset-0 bg-cover bg-center ">
@@ -32,10 +32,9 @@
     @else
     <div class="absolute inset-0 bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('{{ asset('default-hero.jpg') }}')"></div>
     @endif
-
     <div class="absolute bottom-32 left-1/2 transform -translate-x-1/2 z-10 flex gap-4">
         <a href="{{ route('products.user') }}">
-            <button class="inline-flex items-center justify-center rounded-md bg-[var(--primary-color)] px-8 py-3 text-base font-semibold text-white shadow-lg transition-all hover:bg-opacity-90 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2 focus:ring-offset-gray-900">
+            <button class="inline-flex items-center justify-center rounded-md bg-amber-500 px-8 py-3 text-base font-semibold text-white shadow-lg transition-all hover:bg-opacity-90 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2 focus:ring-offset-gray-900">
                 Products
             </button>
         </a>
@@ -47,29 +46,47 @@
     </div>
 </section>
 
-<section id="about-us" class="py-20 bg-white">
+<section id="brands" class="py-12 bg-gray-50">
     <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">About Us</h2>
-             <div class="text-lg text-gray-600">
-                @if(!empty($settings->about_desc))
-                    {!! $settings->about_desc !!} 
-                @endif
+        <h2 class="text-2xl sm:text-3xl md:text-3xl font-bold text-amber-500 mb-8 text-center">
+            Satisfied Clients
+        </h2>
+        
+        @if($brands->count())
+            <div class="swiper-container-brands">
+                <div class="swiper-wrapper">
+                    @foreach($brands as $index => $brand)
+                        <div class="swiper-slide flex justify-center items-center brand-slide">
+                            <div class="flex justify-center items-center 
+                                        h-24 w-30 sm:h-24 sm:w-40 md:h-30 md:w-52">
+                                @if($brand->image)
+                                    <img src="{{ asset('upload/'.$brand->image) }}" 
+                                        alt="{{ $brand->name }}" 
+                                        class="object-contain h-full w-full">
+                                @else
+                                    <span class="text-gray-400">No Image</span>
+                                @endif
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
-        </div>
+        @else
+            <p class="text-center text-gray-500">No brands to display.</p>
+        @endif
     </div>
 </section>
 
 <section id="services" class="py-20 bg-gray-50">
     <div class="container mx-auto px-6">
         <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Our Services</h2>
+            <h2 class="text-3xl md:text-3xl font-bold text-amber-500">Our Services</h2>
             <p class="text-lg text-gray-600 mt-2">Pioneering advancements from discovery to delivery.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             @foreach($services as $service)
                 <div class="group bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-center">
-                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-[var(--primary-color)] text-white mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-amber-500 text-white mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                         @if($service->image)
                             <img src="{{ asset('upload/'.$service->image) }}" alt="{{ $service->heading }}" class="h-12 w-12 object-contain mx-auto">
                         @else
@@ -84,15 +101,28 @@
     </div>
 </section>
 
-<section  class="py-20 bg-white">
+<section id="about-mission" class="py-20 bg-gray-50">
     <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Mission & Vision</h2>
-            <p class="text-lg text-gray-600">
-                @if(!empty($settings->mission_vision))
-                    {!! $settings->mission_vision !!} 
-                @endif
-            </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- About Us Card -->
+            <div class="bg-white p-10 rounded-xl shadow-lg transform ">
+                <h2 class="text-3xl md:text-3xl font-extrabold text-amber-500 mb-6 text-center">About Us</h2>
+                <div class="text-gray-700 text-lg leading-relaxed">
+                    @if(!empty($settings->about_desc))
+                        {!! $settings->about_desc !!} 
+                    @endif
+                </div>
+            </div>
+
+            <!-- Mission & Vision Card -->
+            <div class="bg-white p-10 rounded-xl shadow-lg transform ">
+                <h2 class="text-3xl md:text-3xl font-extrabold text-amber-500 mb-6 text-center">Mission & Vision</h2>
+                <div class="text-gray-700 text-lg leading-relaxed">
+                    @if(!empty($settings->mission_vision))
+                        {!! $settings->mission_vision !!} 
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -128,10 +158,32 @@
         });
 </script>
 
+<script>
+    const swiperBrands = new Swiper('.swiper-container-brands', {
+        loop: true,
+        slidesPerView: 4, 
+        spaceBetween: 30,
+        speed: 2000,
+        autoplay: {
+            delay: 0,
+            disableOnInteraction: false,
+        },
+        freeMode: true,
+        freeModeMomentum: false,
+        breakpoints: {
+            320: { slidesPerView: 2, spaceBetween: 10 },   
+            640: { slidesPerView: 3, spaceBetween: 20 },  
+            1024: { slidesPerView: 5, spaceBetween: 30 },  
+        },
+    });
+</script>
+
+
 <style>
-html {
-    scroll-behavior: smooth;
-}
+    html {
+        scroll-behavior: smooth;
+    }
+
 </style>
 
 @endsection

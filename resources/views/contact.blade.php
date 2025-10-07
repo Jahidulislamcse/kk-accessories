@@ -10,7 +10,7 @@
              <!-- Left Side -->
              <div class="flex flex-col gap-8">
                  <div>
-                     <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">Contact Us</h1>
+                     <h1 class="text-4xl font-bold tracking-tight text-amber-500 sm:text-5xl">Contact Us</h1>
                      <p class="mt-4 text-lg text-gray-600">
                          We're here to help. Reach out to us with any questions or inquiries.
                      </p>
@@ -102,7 +102,7 @@
 
                  <!-- Office Info -->
                  <div class="bg-white p-8 rounded-lg shadow-lg">
-                     <h2 class="text-2xl font-bold text-gray-900">Our Office</h2>
+                     <h2 class="text-2xl font-bold text-amber-500">Our Office</h2>
                      <div class="mt-6 space-y-4">
                          @if(optional($settings)->address)
                          <div class="flex items-start">

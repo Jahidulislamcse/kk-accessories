@@ -3,9 +3,11 @@
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ManagingBodyController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -26,6 +28,7 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 Route::get('/all-branches', [BranchController::class, 'userBranches'])->name('branches.user');
 Route::get('/kk-products', [ProductController::class, 'userProductsByCategory'])->name('products.user');
 Route::get('/products/{slug}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/managing-body', [ManagingBodyController::class, 'frontendIndex'])->name('managing-body');
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -53,6 +56,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
             Route::delete('/{branch}', 'destroy')->name('destroy');
 
             Route::get('/{branch}/autologin', 'autologin')->name('autologin');
+        });
+
+        Route::prefix('brands')->name('brands.')->controller(BrandController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/', 'store')->name('store');
+            Route::get('/{brand}/edit', 'edit')->name('edit');
+            Route::put('/{brand}', 'update')->name('update');
+            Route::delete('/{brand}', 'destroy')->name('destroy');
         });
 
         Route::prefix('sliders')->name('sliders.')->controller(SliderController::class)->group(function () {
@@ -91,6 +103,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
             Route::delete('images/{id}', [ProductController::class, 'destroyImage'])->name('images.destroy');
         });
+
+            Route::prefix('managing-body')->name('managing-body.')->controller(ManagingBodyController::class)->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/', 'store')->name('store');
+                Route::get('/{managingBody}/edit', 'edit')->name('edit');
+                Route::put('/{managingBody}', 'update')->name('update');
+                Route::delete('/{managingBody}', 'destroy')->name('destroy');
+            });
 
     });
 });

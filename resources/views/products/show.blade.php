@@ -51,7 +51,7 @@
                 <p class="text-gray-700 mb-4">{{ $product->description }}</p>
 
                 <button id="openQuotationModal"
-                    class="px-6 py-3 bg-[var(--primary-color)] text-white rounded-md font-medium hover:bg-sky-600 transition-colors duration-200">
+                    class="px-6 py-3 bg-amber-500 text-white rounded-md font-medium hover:bg-sky-600 transition-colors duration-200">
                     Request Quotation
                 </button>
             </div>

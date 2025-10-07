@@ -25,7 +25,6 @@
                         @endif
                     </h1>
                 </div>
-                <p class="text-gray-400">Committed to a healthier future.</p>
             </div>
             <div>
                 <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
@@ -43,7 +42,7 @@
         <div class="mt-12 border-t border-gray-700 pt-8 text-center text-gray-500">
                 <div class="copyright">
                     Copyright © 2025 Developed & Maintained By 
-                        <a href="https://www.cyrapid.com" target="_blank" rel="noopener noreferrer">CYRAPID IT SOLUTIONS</a>
+                        <a href="https://www.cyrapid.com" target="_blank" rel="noopener noreferrer">Jahidul Islam (jahidcse181@gmail.com)</a>
                 </div>
         </div>
     </div>

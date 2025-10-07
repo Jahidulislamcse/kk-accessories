@@ -20,17 +20,34 @@
                 </a>
             </div>
 
-            <nav class="ml-nav hidden md:flex items-center gap-12">
-                <a class="text-gray-700 hover:text-[var(--primary-color)] font-medium" href="{{ route('home')}}">Home</a>
-                <a class="text-gray-700 hover:text-[var(--primary-color)] font-medium" href="{{ route('products.user')}}">Products</a>
-                <a class="text-gray-700 hover:text-[var(--primary-color)] font-medium" href="{{ route('contact')}}">Contact</a>
+            <!-- Desktop Navigation -->
+            <nav class="ml-nav hidden md:flex items-center gap-6">
+                <a href="{{ route('home') }}" 
+                    class="px-4 py-2 rounded-md font-medium {{ request()->routeIs('home') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
+                    Home
+                </a>
+                <a href="{{ route('products.user') }}" 
+                    class="px-4 py-2 rounded-md font-medium {{ request()->routeIs('products.user') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
+                    Products
+                </a>
+                <a href="{{ route('managing-body') }}" 
+                    class="px-4 py-2 rounded-md font-medium {{ request()->routeIs('managing-body') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
+                    Managing
+                </a>
+                <a href="{{ route('contact') }}" 
+                    class="px-4 py-2 rounded-md font-medium {{ request()->routeIs('contact') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
+                    Contact
+                </a>
             </nav>
 
+            <!-- Login + Mobile Menu Button -->
             <div class="flex items-center gap-4">
-                <a href="{{ route('login')}}" class="hidden md:inline-flex items-center justify-center rounded-md bg-[var(--primary-color)] px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-opacity-90">
+                <a href="{{ route('login') }}" 
+                    class="hidden md:inline-flex items-center justify-center rounded-md px-5 py-2.5 text-sm font-semibold text-white shadow-sm {{ request()->routeIs('login') ? 'bg-[var(--primary-color)]' : 'bg-[var(--primary-color)] hover:bg-amber-500' }}">
                     Login
                 </a>
 
+                <!-- Mobile Menu Button -->
                 <button id="mobile-menu-button" class="md:hidden p-2 text-gray-700 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -40,11 +57,26 @@
             </div>
         </div>
 
+        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden flex-col mt-4 space-y-3 md:hidden">
-            <a class="block text-gray-700 hover:text-[var(--primary-color)] font-medium" href="{{ route('home')}}">Home</a>
-            <a class="block text-gray-700 hover:text-[var(--primary-color)] font-medium" href="{{ route('products.user')}}">Products</a>
-            <a class="block text-gray-700 hover:text-[var(--primary-color)] font-medium" href="{{ route('contact')}}">Contact</a>
-            <a href="{{ route('login')}}" class="inline-block bg-[var(--primary-color)] text-white px-4 py-2 rounded-md font-medium">
+            <a href="{{ route('home') }}" 
+                class="block px-4 py-2 rounded-md font-medium {{ request()->routeIs('home') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
+                Home
+            </a>
+            <a href="{{ route('products.user') }}" 
+                class="block px-4 py-2 rounded-md font-medium {{ request()->routeIs('products.user') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
+                Products
+            </a>
+            <a href="{{ route('managing-body') }}" 
+                class="block px-4 py-2 rounded-md font-medium {{ request()->routeIs('managing-body') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
+                Managing
+            </a>
+            <a href="{{ route('contact') }}" 
+                class="block px-4 py-2 rounded-md font-medium {{ request()->routeIs('contact') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
+                Contact
+            </a>
+            <a href="{{ route('login') }}" 
+                class="inline-block bg-amber-500 text-white px-4 py-2 rounded-md font-medium hover:bg-amber-600">
                 Login
             </a>
         </div>

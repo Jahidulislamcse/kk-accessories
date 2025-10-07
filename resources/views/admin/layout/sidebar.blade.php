@@ -41,6 +41,14 @@
                         </a>
                     </li>
 
+                     <li class="nav-item">
+                        <a href="{{ route('admin.brands.index') }}"
+                            class="nav-link d-flex align-items-center {{ request()->routeIs('admin.brands.index') ? 'active bg-warning text-white' : 'text-dark' }}">
+                            <img src="{{ asset('backend/icons/shop.png') }}" alt="Settings Icon" class="me-2" style="width:32px; height:32px;">
+                            <span class="text-white text-lg">Brands</span>
+                        </a>
+                    </li>
+
                     <li class="nav-item">
                         <a href="{{ route('admin.messages') }}"
                             class="nav-link d-flex align-items-center {{ request()->routeIs('admin.messages') ? 'active bg-warning text-white' : 'text-dark' }}">
@@ -62,6 +70,14 @@
                             class="nav-link d-flex align-items-center {{ request()->routeIs('admin.services.index') ? 'active bg-warning text-white' : 'text-dark' }}">
                             <img src="{{ asset('backend/icons/services.png') }}" alt="Settings Icon" class="me-2" style="width:32px; height:32px;">
                             <span class="text-white text-lg">Services</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('admin.managing-body.index') }}"
+                            class="nav-link d-flex align-items-center {{ request()->routeIs('admin.managing-body.index') ? 'active bg-warning text-white' : 'text-dark' }}">
+                            <img src="{{ asset('backend/icons/management.png') }}" alt="Settings Icon" class="me-2" style="width:32px; height:32px;">
+                            <span class="text-white text-lg">Management</span>
                         </a>
                     </li>
 

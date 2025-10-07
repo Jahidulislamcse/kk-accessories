@@ -6,7 +6,7 @@
 
 <div class="max-w-7xl mx-auto card-container">
     <div class="text-center mb-8">
-        <h1 class="text-4xl font-extrabold text-gray-900 sm:text-5xl tracking-tight">
+        <h1 class="text-4xl font-extrabold text-amber-500 sm:text-5xl tracking-tight">
             @if (!empty($setting->products_header))
                 {{ $setting->products_header }}
             @else
@@ -41,7 +41,7 @@
     </div>
 </div>
 
-<div id="quotationChip" class="fixed top-2/3 left-0 transform -translate-y-1/2 bg-[var(--primary-color)] text-white px-3 py-2 rounded-r-2xl cursor-pointer z-50 hover:bg-sky-600 transition-colors">
+<div id="quotationChip" class="fixed top-2/3 left-0 transform -translate-y-1/2 bg-amber-500 text-white px-3 py-2 rounded-r-2xl cursor-pointer z-50 hover:bg-sky-600 transition-colors">
     Make <br> Quote
 </div>
 

@@ -15,7 +15,7 @@
                     style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('{{ asset('upload/' . $slider->image_path) }}');">
 
                     <div class="absolute inset-0 bg-black/30 flex flex-col items-center justify-center text-center px-6">
-                        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-4 animate-fade-in-down">
+                        <h1 class="text-4xl md:text-6xl font-bold leading-tight tracking-tight mb-4 animate-fade-in-down">
                             {{ $slider->heading ?? '' }}
                         </h1>
                         <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-200 mb-8 animate-fade-in-up">
@@ -48,7 +48,8 @@
 
 <section id="brands" class="py-12 bg-gray-50">
     <div class="container mx-auto px-6">
-        <h2 class="text-2xl sm:text-3xl md:text-3xl font-bold text-amber-500 mb-8 text-center">
+       
+        <h2 class="text-3xl md:text-4xl font-bold text-amber-500 mb-12 text-center drop-shadow-lg">
             Satisfied Clients
         </h2>
         
@@ -80,7 +81,9 @@
 <section id="services" class="py-20 bg-gray-50">
     <div class="container mx-auto px-6">
         <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-3xl font-bold text-amber-500">Our Services</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-amber-500 mb-12 text-center drop-shadow-lg">
+                Our Services
+            </h2>
             <p class="text-lg text-gray-600 mt-2">Pioneering advancements from discovery to delivery.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -106,7 +109,9 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- About Us Card -->
             <div class="bg-white p-10 rounded-xl shadow-lg transform ">
-                <h2 class="text-3xl md:text-3xl font-extrabold text-amber-500 mb-6 text-center">About Us</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-amber-500 mb-12 text-center drop-shadow-lg">
+                    About Us
+                </h2>
                 <div class="text-gray-700 text-lg leading-relaxed">
                     @if(!empty($settings->about_desc))
                         {!! $settings->about_desc !!} 
@@ -116,7 +121,9 @@
 
             <!-- Mission & Vision Card -->
             <div class="bg-white p-10 rounded-xl shadow-lg transform ">
-                <h2 class="text-3xl md:text-3xl font-extrabold text-amber-500 mb-6 text-center">Mission & Vision</h2>
+                 <h2 class="text-3xl md:text-4xl font-bold text-amber-500 mb-12 text-center drop-shadow-lg">
+                   Mission & Vision
+                </h2>
                 <div class="text-gray-700 text-lg leading-relaxed">
                     @if(!empty($settings->mission_vision))
                         {!! $settings->mission_vision !!} 

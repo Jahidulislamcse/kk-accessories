@@ -10,16 +10,16 @@
         <h3 class="text-2xl font-semibold text-[var(--text-primary)] mb-4">System Overview</h3>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="bg-white rounded-md p-6 border border-gray-200 shadow-sm">
-                <p class="text-[var(--text-secondary)] text-base font-medium mb-2">Total Users</p>
-                <p class="text-[var(--text-primary)] text-3xl font-bold">{{$userCount}}</p>
+                <p class="text-[var(--text-secondary)] text-base font-medium mb-2">Total Products</p>
+                <p class="text-[var(--text-primary)] text-3xl font-bold">{{$productCount}}</p>
             </div>
             <div class="bg-white rounded-md p-6 border border-gray-200 shadow-sm">
-                <p class="text-[var(--text-secondary)] text-base font-medium mb-2">Active Branches</p>
-                <p class="text-[var(--text-primary)] text-3xl font-bold">{{$branchCount}}</p>
+                <p class="text-[var(--text-secondary)] text-base font-medium mb-2">Unread Messages</p>
+                <p class="text-[var(--text-primary)] text-3xl font-bold">{{$messageCount}}</p>
             </div>
             <div class="bg-white rounded-md p-6 border border-gray-200 shadow-sm">
-                <p class="text-[var(--text-secondary)] text-base font-medium mb-2">System Uptime</p>
-                <p class="text-[var(--text-primary)] text-3xl font-bold">99.9%</p>
+                <p class="text-[var(--text-secondary)] text-base font-medium mb-2">Total Brands</p>
+                <p class="text-[var(--text-primary)] text-3xl font-bold">{{$brandCount}}</p>
             </div>
         </div>
     </section>

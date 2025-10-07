@@ -6,6 +6,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ManagingBodyController;
 use App\Http\Controllers\MessageController;
@@ -29,7 +30,7 @@ Route::get('/all-branches', [BranchController::class, 'userBranches'])->name('br
 Route::get('/kk-products', [ProductController::class, 'userProductsByCategory'])->name('products.user');
 Route::get('/products/{slug}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/managing-body', [ManagingBodyController::class, 'frontendIndex'])->name('managing-body');
-
+Route::get('/kk-gallery', [GalleryController::class, 'showUserGallery'])->name('gallery.user');
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::prefix('profile')->name('profile.')->controller(ProfileController::class)->group(function () {
@@ -104,14 +105,23 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
             Route::delete('images/{id}', [ProductController::class, 'destroyImage'])->name('images.destroy');
         });
 
-            Route::prefix('managing-body')->name('managing-body.')->controller(ManagingBodyController::class)->group(function () {
-                Route::get('/', 'index')->name('index');
-                Route::get('/create', 'create')->name('create');
-                Route::post('/', 'store')->name('store');
-                Route::get('/{managingBody}/edit', 'edit')->name('edit');
-                Route::put('/{managingBody}', 'update')->name('update');
-                Route::delete('/{managingBody}', 'destroy')->name('destroy');
-            });
+        Route::prefix('managing-body')->name('managing-body.')->controller(ManagingBodyController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/', 'store')->name('store');
+            Route::get('/{managingBody}/edit', 'edit')->name('edit');
+            Route::put('/{managingBody}', 'update')->name('update');
+            Route::delete('/{managingBody}', 'destroy')->name('destroy');
+        });
+
+        Route::prefix('gallery')->name('gallery.')->group(function () {
+            Route::get('/', [GalleryController::class, 'index'])->name('index');
+            Route::get('/create', [GalleryController::class, 'create'])->name('create');
+            Route::post('/store', [GalleryController::class, 'store'])->name('store');
+            Route::get('/{gallery}/edit', [GalleryController::class, 'edit'])->name('edit');      // Edit route
+            Route::put('/{gallery}/update', [GalleryController::class, 'update'])->name('update'); // Update route
+            Route::delete('/{gallery}/delete', [GalleryController::class, 'destroy'])->name('destroy');
+        });
 
     });
 });

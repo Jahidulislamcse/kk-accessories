@@ -6,13 +6,9 @@
 
 <div class="max-w-7xl mx-auto card-container">
     <div class="text-center mb-8">
-        <h1 class="text-4xl font-extrabold text-amber-500 sm:text-5xl tracking-tight">
-            @if (!empty($setting->products_header))
-                {{ $setting->products_header }}
-            @else
-                Our Products
-            @endif
-        </h1>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-amber-500 mb-12 text-center drop-shadow-lg">
+            Our Products
+        </h2>
     </div>
 
     <div class="flex flex-wrap justify-start gap-4 mb-10 px-2">

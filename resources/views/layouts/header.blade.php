@@ -21,7 +21,7 @@
             </div>
 
             <!-- Desktop Navigation -->
-            <nav class="ml-nav hidden md:flex items-center gap-6">
+            <nav class="ml-nav hidden md:flex items-center gap-3">
                 <a href="{{ route('home') }}" 
                     class="px-4 py-2 rounded-md font-medium {{ request()->routeIs('home') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
                     Home
@@ -32,7 +32,11 @@
                 </a>
                 <a href="{{ route('managing-body') }}" 
                     class="px-4 py-2 rounded-md font-medium {{ request()->routeIs('managing-body') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
-                    Managing
+                    Management
+                </a>
+                <a href="{{ route('gallery.user') }}" 
+                    class="px-4 py-2 rounded-md font-medium {{ request()->routeIs('gallery.user') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
+                    Gallery
                 </a>
                 <a href="{{ route('contact') }}" 
                     class="px-4 py-2 rounded-md font-medium {{ request()->routeIs('contact') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
@@ -69,7 +73,11 @@
             </a>
             <a href="{{ route('managing-body') }}" 
                 class="block px-4 py-2 rounded-md font-medium {{ request()->routeIs('managing-body') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
-                Managing
+                Management
+            </a>
+            <a href="{{ route('gallery.user') }}" 
+                class="block px-4 py-2 rounded-md font-medium {{ request()->routeIs('gallery.user') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
+                Gallery
             </a>
             <a href="{{ route('contact') }}" 
                 class="block px-4 py-2 rounded-md font-medium {{ request()->routeIs('contact') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
@@ -88,7 +96,7 @@
         padding-top: 80px;
     }
     .ml-nav {
-        margin-left: 30%;
+        margin-left: 25%;
     }
 </style>
 

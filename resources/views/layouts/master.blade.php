@@ -23,7 +23,13 @@
         <main class="flex-grow">
             @yield('content')
         </main>
-
+        <a href="https://wa.me/8801612152443" target="_blank"
+            class="fixed bottom-6 right-6 text-white rounded-full z-50 flex items-center justify-center"
+            title="Chat with me on WhatsApp">
+        <img src="{{ asset('backend/images/whatsapp.png') }}" 
+            alt="WhatsApp" 
+            class="w-20 h-20 object-contain">
+        </a>
         @include('layouts.footer')
     </div>
 </body>

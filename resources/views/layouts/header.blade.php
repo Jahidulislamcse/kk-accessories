@@ -22,27 +22,47 @@
 
             <!-- Desktop Navigation -->
             <nav class="ml-nav hidden md:flex items-center gap-3">
-                <a href="{{ route('home') }}" 
-                    class="px-4 py-2 rounded-md font-medium {{ request()->routeIs('home') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
+                <a href="{{ route('home') }}"
+                class="px-4 py-2 font-medium border-b-2 transition-colors duration-200 
+                {{ request()->routeIs('home') 
+                        ? 'border-amber-500 text-amber-600' 
+                        : 'border-transparent text-gray-700 hover:text-amber-600 hover:border-amber-400' }}">
                     Home
                 </a>
-                <a href="{{ route('products.user') }}" 
-                    class="px-4 py-2 rounded-md font-medium {{ request()->routeIs('products.user') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
+
+                <a href="{{ route('products.user') }}"
+                class="px-4 py-2 font-medium border-b-2 transition-colors duration-200 
+                {{ request()->routeIs('products.user') 
+                        ? 'border-amber-500 text-amber-600' 
+                        : 'border-transparent text-gray-700 hover:text-amber-600 hover:border-amber-400' }}">
                     Products
                 </a>
-                <a href="{{ route('managing-body') }}" 
-                    class="px-4 py-2 rounded-md font-medium {{ request()->routeIs('managing-body') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
+
+                <a href="{{ route('managing-body') }}"
+                class="px-4 py-2 font-medium border-b-2 transition-colors duration-200 
+                {{ request()->routeIs('managing-body') 
+                        ? 'border-amber-500 text-amber-600' 
+                        : 'border-transparent text-gray-700 hover:text-amber-600 hover:border-amber-400' }}">
                     Management
                 </a>
-                <a href="{{ route('gallery.user') }}" 
-                    class="px-4 py-2 rounded-md font-medium {{ request()->routeIs('gallery.user') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
+
+                <a href="{{ route('gallery.user') }}"
+                class="px-4 py-2 font-medium border-b-2 transition-colors duration-200 
+                {{ request()->routeIs('gallery.user') 
+                        ? 'border-amber-500 text-amber-600' 
+                        : 'border-transparent text-gray-700 hover:text-amber-600 hover:border-amber-400' }}">
                     Gallery
                 </a>
-                <a href="{{ route('contact') }}" 
-                    class="px-4 py-2 rounded-md font-medium {{ request()->routeIs('contact') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
+
+                <a href="{{ route('contact') }}"
+                class="px-4 py-2 font-medium border-b-2 transition-colors duration-200 
+                {{ request()->routeIs('contact') 
+                        ? 'border-amber-500 text-amber-600' 
+                        : 'border-transparent text-gray-700 hover:text-amber-600 hover:border-amber-400' }}">
                     Contact
                 </a>
             </nav>
+
 
             <!-- Login + Mobile Menu Button -->
             <div class="flex items-center gap-4">
@@ -64,27 +84,47 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden flex-col mt-4 space-y-3 md:hidden">
             <a href="{{ route('home') }}" 
-                class="block px-4 py-2 rounded-md font-medium {{ request()->routeIs('home') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
+                class="block px-4 py-2 font-medium border-b-2 transition-colors duration-200 
+                {{ request()->routeIs('home') 
+                    ? 'border-amber-500 text-amber-600' 
+                    : 'border-transparent text-gray-700 hover:text-amber-600 hover:border-amber-400' }}">
                 Home
             </a>
+
             <a href="{{ route('products.user') }}" 
-                class="block px-4 py-2 rounded-md font-medium {{ request()->routeIs('products.user') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
+                class="block px-4 py-2 font-medium border-b-2 transition-colors duration-200 
+                {{ request()->routeIs('products.user') 
+                    ? 'border-amber-500 text-amber-600' 
+                    : 'border-transparent text-gray-700 hover:text-amber-600 hover:border-amber-400' }}">
                 Products
             </a>
+
             <a href="{{ route('managing-body') }}" 
-                class="block px-4 py-2 rounded-md font-medium {{ request()->routeIs('managing-body') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
+                class="block px-4 py-2 font-medium border-b-2 transition-colors duration-200 
+                {{ request()->routeIs('managing-body') 
+                    ? 'border-amber-500 text-amber-600' 
+                    : 'border-transparent text-gray-700 hover:text-amber-600 hover:border-amber-400' }}">
                 Management
             </a>
+
             <a href="{{ route('gallery.user') }}" 
-                class="block px-4 py-2 rounded-md font-medium {{ request()->routeIs('gallery.user') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
+                class="block px-4 py-2 font-medium border-b-2 transition-colors duration-200 
+                {{ request()->routeIs('gallery.user') 
+                    ? 'border-amber-500 text-amber-600' 
+                    : 'border-transparent text-gray-700 hover:text-amber-600 hover:border-amber-400' }}">
                 Gallery
             </a>
+
             <a href="{{ route('contact') }}" 
-                class="block px-4 py-2 rounded-md font-medium {{ request()->routeIs('contact') ? 'bg-amber-500 text-white' : 'text-gray-700 hover:bg-amber-100 hover:text-amber-600' }}">
+                class="block px-4 py-2 font-medium border-b-2 transition-colors duration-200 
+                {{ request()->routeIs('contact') 
+                    ? 'border-amber-500 text-amber-600' 
+                    : 'border-transparent text-gray-700 hover:text-amber-600 hover:border-amber-400' }}">
                 Contact
             </a>
+
             <a href="{{ route('login') }}" 
-                class="inline-block bg-amber-500 text-white px-4 py-2 rounded-md font-medium hover:bg-amber-600">
+                class="inline-block bg-amber-500 text-white px-4 py-2 rounded-md font-medium hover:bg-amber-600 transition-colors duration-200">
                 Login
             </a>
         </div>

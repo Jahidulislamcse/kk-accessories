@@ -23,22 +23,22 @@ class ProductSeeder extends Seeder
                 'products' => [
                     [
                         'name' => 'Luxury Foil Stamped Hang Tag',
-                        'cover_image' => 'products/1759667713_Folded-Hangtags-1.png',
+                        'cover_image' => 'products/hangtag-foil.jpg',
                         'description' => 'Premium 600 GSM double-thick cotton cardstock with gold metallic foil stamping, embossed brand insignia, and custom waxed cotton string with brass safety pin.',
                     ],
                     [
                         'name' => 'Recycled Kraft Swing Ticket',
-                        'cover_image' => 'products/1759668362_88357dfab12a4b32b627e7489427e02c.jpg',
+                        'cover_image' => 'products/hangtag-kraft.jpg',
                         'description' => 'Eco-friendly 450 GSM recycled kraft paper hang tag featuring soy-based ink printing, reinforced brass eyelet, and natural rustic jute twine.',
                     ],
                     [
                         'name' => 'Die-Cut Soft Touch Matte Hang Tag',
-                        'cover_image' => 'products/1759668487_7857f739f624cd99eba72fa5657f21cd.jpg',
+                        'cover_image' => 'products/hangtag-matte.jpg',
                         'description' => 'Matte velvet soft-touch laminated tag with precision die-cut contouring, spot UV glossy branding, and woven polyester ribbon attachment.',
                     ],
                     [
                         'name' => 'Multi-Fold Garment Booklet Tag',
-                        'cover_image' => 'products/1759667713_Folded-Hangtags-1.png',
+                        'cover_image' => 'products/hangtag-booklet.jpg',
                         'description' => 'Multi-page accordion folded hang tag booklet containing brand storytelling, sustainability credentials, and fabric care certifications.',
                     ],
                 ],
@@ -50,22 +50,22 @@ class ProductSeeder extends Seeder
                 'products' => [
                     [
                         'name' => 'Printed Satin Wash Care Label',
-                        'cover_image' => 'products/1759668324_care-labels-printed-k.jpg',
+                        'cover_image' => 'products/care-satin.jpg',
                         'description' => 'Ultra-soft slit-edge white polyester satin printed with high-resolution laundry wash icons, fiber composition, and multi-language care instructions.',
                     ],
                     [
                         'name' => 'Organic Cotton Content Label',
-                        'cover_image' => 'products/1759668424_9aeb3df8a4339aebc08c0e380e4682cf.jpg',
+                        'cover_image' => 'products/care-cotton.jpg',
                         'description' => '100% GOTS certified unbleached natural cotton tape printed with water-based non-toxic inks, gentle against sensitive skin.',
                     ],
                     [
                         'name' => 'High-Density Thermal Transfer Care Label',
-                        'cover_image' => 'products/1759668324_care-labels-printed-k.jpg',
+                        'cover_image' => 'products/care-thermal.jpg',
                         'description' => 'Crisp black nylon taffeta wash label with anti-fray sonic sealed ultrasonic cut, engineered for industrial laundry wash durability up to 90°C.',
                     ],
                     [
                         'name' => 'Recycled Polyester Eco Care Ribbon',
-                        'cover_image' => 'products/1759668424_9aeb3df8a4339aebc08c0e380e4682cf.jpg',
+                        'cover_image' => 'products/care-recycled.jpg',
                         'description' => 'GRS-certified 100% post-consumer recycled satin ribbon with sharp black offset printing, OEKO-TEX Standard 100 Class 1 certified.',
                     ],
                 ],
@@ -131,22 +131,22 @@ class ProductSeeder extends Seeder
                 'products' => [
                     [
                         'name' => 'Rigid Magnetic Apparel Presentation Box',
-                        'cover_image' => 'products/box-magnetic.png',
+                        'cover_image' => 'products/box-magnetic.jpg',
                         'description' => 'Luxury 1200 GSM grayboard gift box with hidden magnetic clasp closure, matte soft-touch anti-scratch finish, and hot foil stamped logo.',
                     ],
                     [
                         'name' => 'Embossed Lookbook Photo Insert Card',
-                        'cover_image' => 'products/card-lookbook.png',
+                        'cover_image' => 'products/card-lookbook.jpg',
                         'description' => '400 GSM art cardstock photographic model card insert with high-gloss UV varnish, showcasing seasonal styling suggestions and care tips.',
                     ],
                     [
                         'name' => 'Eco Kraft Self-Locking Apparel Mailer',
-                        'cover_image' => 'products/box-kraft.png',
+                        'cover_image' => 'products/box-kraft.jpg',
                         'description' => 'Sustainable corrugated E-flute kraft packaging box with tear-strip opening, customized two-sided water-based flexographic print.',
                     ],
                     [
                         'name' => 'Slide Tray Drawer Packaging Box',
-                        'cover_image' => 'products/box-drawer.png',
+                        'cover_image' => 'products/box-drawer.jpg',
                         'description' => 'Drawer-style slide packaging box with ribbon pull-tab, custom velvet-lined insert, engineered for shirts, belts, and luxury trims.',
                     ],
                 ],
@@ -185,22 +185,22 @@ class ProductSeeder extends Seeder
                 'products' => [
                     [
                         'name' => '100% Cotton Scalloped Crochet Lace',
-                        'cover_image' => 'products/lace-crochet.jpeg',
+                        'cover_image' => 'products/lace-crochet.jpg',
                         'description' => 'Vintage botanical floral pattern crochet lace trim made from combed cotton yarns, pre-shrunk for dress hems, lingerie, and bohemian blouses.',
                     ],
                     [
                         'name' => 'Delicate Eyelash Scallop Bridal Lace',
-                        'cover_image' => 'products/lace-eyelash.jpeg',
+                        'cover_image' => 'products/lace-eyelash.jpg',
                         'description' => 'Intricate polyamide eyelash lace with fine corded contour outlines, designed for luxury eveningwear, sleeves, and neckline borders.',
                     ],
                     [
                         'name' => 'Elastic Floral Stretch Lace Ribbon',
-                        'cover_image' => 'products/lace-stretch.jpeg',
+                        'cover_image' => 'products/lace-stretch.jpg',
                         'description' => '15% elastane multi-directional stretch lace ribbon with soft touch and excellent recovery for intimates, bodysuits, and swimwear.',
                     ],
                     [
                         'name' => 'Guipure Water-Soluble Chemical Lace',
-                        'cover_image' => 'products/lace-guipure.jpeg',
+                        'cover_image' => 'products/lace-guipure.jpg',
                         'description' => 'Heavyweight free-standing guipure lace trim without mesh backing, creating a three-dimensional sculpted embroidery appearance.',
                     ],
                 ],
@@ -239,22 +239,22 @@ class ProductSeeder extends Seeder
                 'products' => [
                     [
                         'name' => '3D Molded High-Density Silicone Patch',
-                        'cover_image' => 'products/patch-silicone.png',
+                        'cover_image' => 'products/patch-silicone.jpg',
                         'description' => 'Raised 1.5mm 3D dimensional silicone emblem with micro-textured matte background, bonded via hot-melt adhesive at 150°C for performance wear.',
                     ],
                     [
                         'name' => 'Reflective Laser-Cut Heat Seal Transfer',
-                        'cover_image' => 'products/patch-reflective.png',
+                        'cover_image' => 'products/patch-reflective.jpg',
                         'description' => 'EN ISO 20471 certified high-candlepower glass bead reflective transfer film with multi-color screen printing for nighttime athletic visibility.',
                     ],
                     [
                         'name' => 'Matte TPU Embossed Crest Badge',
-                        'cover_image' => 'products/patch-tpu.png',
+                        'cover_image' => 'products/patch-tpu.jpg',
                         'description' => 'Thermoplastic polyurethane high-frequency welded crest patch with faux-metallic textures, resistant to over 50 commercial laundry cycles.',
                     ],
                     [
                         'name' => 'Sublimated Flocked Chenille Emblem',
-                        'cover_image' => 'products/patch-chenille.png',
+                        'cover_image' => 'products/patch-chenille.jpg',
                         'description' => 'Retro collegiate varsity chenille embroidery badge combined with high-detail sublimated twill base and twill border.',
                     ],
                 ],

@@ -1,43 +1,32 @@
-@extends('layouts.master')
+ @extends('layouts.master')
 
-@section('title', 'Services | K&K Accessories')
+ @section('title', 'Contact')
 
-@section('content')
-    <section class="page-title kk-page-title" style="background-image: url({{ asset('echix/images/home-1/inner/page-title-bg.png') }});">
-        <div class="auto-container">
-            <h1 class="title">Our Services</h1>
-            <ul class="page-breadcrumb">
-                <li><a href="{{ route('home') }}">Home</a></li>
-                <li>Services</li>
-            </ul>
+ @section('content')
+
+
+<section id="services" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Our Services</h2>
+            <p class="text-lg text-gray-600 mt-2">Pioneering advancements from discovery to delivery.</p>
         </div>
-    </section>
-
-    <section class="service-wrapper service-one kk-page-section">
-        <div class="container">
-            <div class="section-title text-center">
-                <div class="sub-title"><span>What We Do</span></div>
-                <h2 class="title">Accessory services for dependable production</h2>
-            </div>
-            <div class="row g-4">
-                @foreach($services as $service)
-                    <div class="col-xl-4 col-md-6">
-                        <div class="kk-card">
-                            <div class="kk-card__body">
-                                <div class="icon mb-20">
-                                    @if($service->image)
-                                        <img src="{{ asset('upload/' . $service->image) }}" alt="{{ $service->heading }}" style="height: 70px; width: 70px; object-fit: contain;">
-                                    @else
-                                        <i class="flaticon-technology"></i>
-                                    @endif
-                                </div>
-                                <h3 class="kk-card__title">{{ $service->heading }}</h3>
-                                <p>{{ $service->desc }}</p>
-                            </div>
-                        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            @foreach($services as $service)
+                <div class="group bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-center">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-[var(--primary-color)] text-white mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        @if($service->image)
+                            <img src="{{ asset('upload/'.$service->image) }}" alt="{{ $service->heading }}" class="h-12 w-12 object-contain mx-auto">
+                        @else
+                            <span class="material-symbols-outlined text-3xl">science</span>
+                        @endif
                     </div>
-                @endforeach
-            </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">{{ $service->heading }}</h3>
+                    <p class="text-gray-600">{{ $service->desc }}</p>
+                </div>
+            @endforeach
         </div>
-    </section>
-@endsection
+    </div>
+</section>
+
+ @endsection

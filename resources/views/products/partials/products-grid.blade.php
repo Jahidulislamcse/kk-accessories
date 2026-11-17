@@ -1,32 +1,27 @@
 @foreach($categories as $category)
     @if($category->products->count())
-        <div class="mb-70">
-            <div class="section-title mb-35">
-                <div class="sub-title"><span>Category</span></div>
-                <h2 class="title">{{ $category->name }}</h2>
-            </div>
-            <div class="row g-4">
+        <div class="mb-12 px-2">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">{{ $category->name }}</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 @foreach($category->products as $product)
-                    @php
-                        $image = $product->cover_image ?: optional($product->images->first())->image;
-                    @endphp
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="kk-card">
-                            <a href="{{ route('products.show', $product->slug) }}">
-                                @if($image)
-                                    <img class="kk-card__image" src="{{ asset('upload/' . $image) }}" alt="{{ $product->name }}">
-                                @else
-                                    <img class="kk-card__image" src="{{ asset('echix/images/home-1/inner/products/1.jpg') }}" alt="{{ $product->name }}">
-                                @endif
-                            </a>
-                            <div class="kk-card__body">
-                                <span class="kk-card__meta">{{ $category->name }}</span>
-                                <h3 class="kk-card__title">
-                                    <a href="{{ route('products.show', $product->slug) }}">{{ \Illuminate\Support\Str::limit($product->name, 42) }}</a>
-                                </h3>
-                                <p>{{ \Illuminate\Support\Str::limit(strip_tags($product->description), 80) }}</p>
-                                <a href="{{ route('products.show', $product->slug) }}" class="theme-btn mt-15">View Product</a>
+                    <div class="flex flex-col bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl group relative">
+                        <div class="relative flex-shrink-0">
+                            @if($product->cover_image)
+                                <img alt="{{ $product->name }}" class="h-48 w-full object-cover" src="{{ asset('upload/' . $product->cover_image) }}">
+                            @elseif($product->images->first())
+                                <img alt="{{ $product->name }}" class="h-48 w-full object-cover" src="{{ asset('upload/' . $product->images->first()->image) }}">
+                            @else
+                                <img alt="{{ $product->name }}" class="h-48 w-full object-cover" src="https://via.placeholder.com/400x200?text=No+Image">
+                            @endif
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/25">
+                                <a href="{{ route('products.show', $product->slug) }}" class="px-6 py-2 border border-white text-white font-medium rounded-md transition-transform duration-200 transform hover:scale-105">
+                                    View Product
+                                </a>
                             </div>
+                        </div>
+                        <div class="flex-1 p-4 flex flex-col justify-between">
+                            <h3 class="mt-2 text-xl font-semibold text-gray-900">{{ Str::limit($product->name, 20) }}</h3>
+                            <p class="mt-3 text-base text-gray-500">{{ Str::limit($product->description, 25) }}</p>
                         </div>
                     </div>
                 @endforeach

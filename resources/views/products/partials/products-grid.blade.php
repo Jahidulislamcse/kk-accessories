@@ -19,13 +19,13 @@
                 </div>
             </div>
 
-            <!-- Products Grid for this Category -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7">
+            <!-- Products Grid for this Category (Compact Vertical Space & 2-Col Mobile) -->
+            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5 lg:gap-6">
                 @foreach($category->products as $product)
-                    <div class="group bg-white rounded-3xl border border-slate-200/90 overflow-hidden shadow-xs hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between">
+                    <div class="group bg-white rounded-2xl sm:rounded-3xl border border-slate-200/90 overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 sm:hover:-translate-y-1.5 flex flex-col justify-between">
                         <div>
                             <!-- Product Image Container with Zoom & Badge -->
-                            <div class="relative h-60 w-full overflow-hidden bg-slate-100">
+                            <div class="relative h-36 sm:h-44 md:h-48 w-full overflow-hidden bg-slate-100">
                                 @php
                                     $imageSrc = $product->cover_image 
                                         ? asset('upload/' . $product->cover_image) 
@@ -36,47 +36,47 @@
                                      class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110">
                                 
                                 <!-- Category Tag Pill -->
-                                <div class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-[11px] font-bold text-amber-400 border border-white/10 shadow-sm">
+                                <div class="absolute top-2 left-2 sm:top-3 sm:left-3 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-[9px] sm:text-[10px] font-bold text-amber-400 border border-white/10 shadow-xs max-w-[85%] truncate">
                                     {{ $category->name }}
                                 </div>
 
                                 <!-- Quick View Action Overlay -->
-                                <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+                                <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-2 sm:p-4">
                                     <a href="{{ route('products.show', $product->slug) }}" 
-                                       class="px-5 py-2.5 rounded-xl bg-white text-slate-900 font-bold text-xs shadow-xl transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 hover:bg-amber-500 hover:text-white">
-                                        View Product Details
+                                       class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl bg-white text-slate-900 font-bold text-[10px] sm:text-xs shadow-lg transform translate-y-1.5 group-hover:translate-y-0 transition-all duration-300 hover:bg-amber-500 hover:text-white">
+                                        View Details
                                     </a>
                                 </div>
                             </div>
 
                             <!-- Product Information -->
-                            <div class="p-5 sm:p-6">
-                                <h3 class="text-lg font-bold font-heading text-slate-900 group-hover:text-amber-600 transition-colors line-clamp-1">
+                            <div class="p-3 sm:p-4">
+                                <h3 class="text-xs sm:text-sm md:text-base font-bold font-heading text-slate-900 group-hover:text-amber-600 transition-colors line-clamp-1">
                                     <a href="{{ route('products.show', $product->slug) }}">{{ $product->name }}</a>
                                 </h3>
 
                                 @if(!empty($product->description))
-                                    <p class="text-xs sm:text-sm text-slate-500 mt-2 line-clamp-2 leading-relaxed">
+                                    <p class="text-[11px] sm:text-xs text-slate-500 mt-1 line-clamp-1 leading-snug">
                                         {{ strip_tags($product->description) }}
                                     </p>
                                 @else
-                                    <p class="text-xs text-slate-400 mt-2">
-                                        Custom OEM/ODM garment accessory manufactured to brand specifications.
+                                    <p class="text-[11px] sm:text-xs text-slate-400 mt-1 line-clamp-1">
+                                        Custom OEM/ODM garment accessory.
                                     </p>
                                 @endif
                             </div>
                         </div>
 
                         <!-- Card Bottom Bar -->
-                        <div class="px-5 sm:px-6 pb-5 pt-3 border-t border-slate-100 flex items-center justify-between bg-slate-50/50">
-                            <span class="text-xs font-semibold text-slate-500 flex items-center gap-1.5">
+                        <div class="px-3 py-2 sm:px-4 sm:py-2.5 border-t border-slate-100 flex items-center justify-between bg-slate-50/50">
+                            <span class="hidden sm:inline-flex text-[11px] font-semibold text-slate-500 items-center gap-1.5">
                                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                <span>In Stock / Custom</span>
+                                <span>Custom / OEM</span>
                             </span>
                             <a href="{{ route('products.show', $product->slug) }}" 
-                               class="inline-flex items-center gap-1.5 text-xs font-bold text-amber-600 group-hover:text-amber-700 transition-colors">
-                                <span>View Details</span>
-                                <svg class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                               class="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold text-amber-600 group-hover:text-amber-700 transition-colors ml-auto sm:ml-0">
+                                <span>Details</span>
+                                <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
                             </a>
                         </div>
                     </div>

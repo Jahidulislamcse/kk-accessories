@@ -7,7 +7,7 @@
     <!-- ==================== HERO SLIDER SECTION ==================== -->
     <section class="relative bg-slate-950 text-white overflow-hidden">
         @if ($sliders->count())
-            <div class="swiper swiper-hero w-full h-[70vh] min-h-[520px] max-h-[750px]">
+            <div class="swiper swiper-hero w-full h-[70vh] min-h-[500px] max-h-[750px]">
                 <div class="swiper-wrapper">
                     @foreach ($sliders as $slider)
                         <div class="swiper-slide relative flex items-center">
@@ -16,7 +16,7 @@
                                 style="background-image: url('{{ asset('upload/' . $slider->image_path) }}');">
                             </div>
                             
-                            <!-- Refined Cinematic Gradient: Darker on the left for text contrast, translucent on the right to show the accessory product -->
+                            <!-- Refined Cinematic Gradient -->
                             <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/60 to-slate-950/20"></div>
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
 
@@ -39,9 +39,9 @@
                                     @endif
 
                                     <div class="flex flex-wrap items-center gap-4">
-                                        <a href="#product-showcase"
+                                        <a href="#categories-showcase"
                                            class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold text-sm sm:text-base shadow-lg shadow-amber-500/25 transition-all duration-200 transform hover:-translate-y-0.5">
-                                            <span>Explore Products</span>
+                                            <span>Explore Categories</span>
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                                         </a>
 
@@ -56,9 +56,7 @@
                     @endforeach
                 </div>
 
-                <!-- Swiper Navigation Controls -->
-                <div class="swiper-button-prev !hidden md:!flex !w-11 !h-11 !text-white !bg-slate-900/60 hover:!bg-amber-500 !backdrop-blur-md !rounded-xl !border !border-white/20 transition-all !left-6 after:!text-base"></div>
-                <div class="swiper-button-next !hidden md:!flex !w-11 !h-11 !text-white !bg-slate-900/60 hover:!bg-amber-500 !backdrop-blur-md !rounded-xl !border !border-white/20 transition-all !right-6 after:!text-base"></div>
+                <!-- Swiper Pagination (No side arrows as requested) -->
                 <div class="swiper-pagination !bottom-6"></div>
             </div>
         @else
@@ -73,7 +71,7 @@
                     </h1>
                     <div class="flex justify-center gap-4">
                         <a href="{{ route('products.user') }}" class="px-7 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-sm shadow-lg">
-                            Explore Catalog
+                            Explore Categories
                         </a>
                         <a href="{{ route('contact') }}" class="px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-sm border border-white/20">
                             Contact Us
@@ -112,13 +110,13 @@
         </div>
     </section>
 
-    <!-- ==================== CLIENTS & BRANDS CAROUSEL ==================== -->
+    <!-- ==================== CLIENTS & BRANDS CAROUSEL (IN FULL NATURAL COLOR) ==================== -->
     @if ($brands->count())
-        <section id="brands" class="py-10 bg-slate-50/70 border-b border-slate-200/80">
+        <section id="brands" class="py-12 bg-slate-50/70 border-b border-slate-200/80">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-6">
+                <div class="text-center mb-8">
                     <p class="text-xs font-bold uppercase tracking-widest text-slate-500 font-heading">
-                        Trusted by Global Apparel Brands & Buying Houses
+                        Trusted by Global Apparel Brands & Retailers
                     </p>
                 </div>
 
@@ -126,13 +124,13 @@
                     <div class="swiper-wrapper items-center">
                         @foreach ($brands as $brand)
                             <div class="swiper-slide flex justify-center items-center px-3">
-                                <div class="h-16 w-36 sm:w-44 p-3 rounded-xl bg-white border border-slate-200/90 shadow-2xs hover:border-amber-400 hover:shadow-md transition-all duration-300 flex items-center justify-center group">
+                                <div class="h-20 w-40 sm:w-48 p-3 rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:border-amber-400 hover:shadow-lg transition-all duration-300 flex items-center justify-center group">
                                     @if ($brand->image)
                                         <img src="{{ asset('upload/' . $brand->image) }}"
                                              alt="{{ $brand->name }}"
-                                             class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 opacity-70 group-hover:opacity-100 transition-all duration-300">
+                                             class="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105">
                                     @else
-                                        <span class="text-xs font-semibold text-slate-600">{{ $brand->name }}</span>
+                                        <span class="text-xs font-semibold text-slate-700">{{ $brand->name }}</span>
                                     @endif
                                 </div>
                             </div>
@@ -143,148 +141,122 @@
         </section>
     @endif
 
-    <!-- ==================== PRODUCT CATEGORIES SHOWCASE ==================== -->
-    <section id="product-showcase" class="py-20 bg-white">
+    <!-- ==================== PRODUCT CATEGORIES MODERN SHOWCASE ==================== -->
+    <section id="categories-showcase" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
-            <div class="text-center max-w-3xl mx-auto mb-12">
+            <div class="text-center max-w-3xl mx-auto mb-14">
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 text-xs font-bold tracking-wider uppercase mb-3">
-                    <span>✦ Product Categories Showcase</span>
+                    <span>✦ Product Categories Portfolio</span>
                 </div>
-                <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 tracking-tight">
-                    Explore Our Product Portfolio
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-slate-900 tracking-tight">
+                    Explore Our Product Categories
                 </h2>
                 <p class="text-slate-600 mt-3 text-base sm:text-lg leading-relaxed">
-                    Browse our full range of trims, lace, labels, hangtags, and packaging. Select a category below to filter items instantly.
+                    High-precision trims, lace, labels, hangtags, and packaging tailored to international fashion standards. Select any category to view full specifications.
                 </p>
             </div>
 
-            <!-- Category Filter Tabs -->
-            <div class="flex items-center justify-start sm:justify-center gap-2 sm:gap-3 overflow-x-auto pb-4 mb-10 scrollbar-none" id="categoryFilterTabs">
-                <!-- All Button -->
-                <button type="button" 
-                        class="category-tab-btn active px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm tracking-wide transition-all duration-200 flex items-center gap-2 bg-amber-500 text-white shadow-md shadow-amber-500/25 flex-shrink-0"
-                        data-category="all">
-                    <span>All Products</span>
-                    <span class="px-2 py-0.5 rounded-full text-[11px] bg-white/20 text-white">
-                        {{ $categories->sum(fn($c) => $c->products->count()) }}
-                    </span>
-                </button>
+            <!-- Modern Category Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7">
+                @foreach($allCategories as $cat)
+                    <a href="{{ route('products.user') }}?category={{ $cat->slug ?? Str::slug($cat->name) }}"
+                       class="group relative h-80 sm:h-96 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl border border-slate-200/90 transition-all duration-500 transform hover:-translate-y-2 flex flex-col justify-between p-6">
+                        
+                        <!-- Background Image Container with Smooth Zoom -->
+                        <div class="absolute inset-0 bg-slate-950 overflow-hidden">
+                            @if($cat->image)
+                                <img src="{{ asset('upload/' . $cat->image) }}"
+                                     alt="{{ $cat->name }}"
+                                     class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110">
+                            @else
+                                <div class="w-full h-full flex items-center justify-center bg-slate-800 text-slate-500">
+                                    <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                </div>
+                            @endif
+                            <!-- Multi-stop Dark Gradient for optimal text legibility -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-slate-950/15 opacity-85 group-hover:opacity-90 transition-opacity"></div>
+                        </div>
 
-                <!-- Dynamic Categories -->
-                @foreach($categories as $category)
-                    <button type="button" 
-                            class="category-tab-btn px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 transition-all duration-200 flex items-center gap-2 flex-shrink-0"
-                            data-category="{{ $category->slug ?? Str::slug($category->name) }}">
-                        @if($category->image)
-                            <img src="{{ asset('upload/' . $category->image) }}" alt="{{ $category->name }}" class="w-5 h-5 rounded-full object-cover">
-                        @endif
-                        <span>{{ $category->name }}</span>
-                        <span class="px-2 py-0.5 rounded-full text-[11px] bg-white text-slate-600 border border-slate-200">
-                            {{ $category->products->count() }}
-                        </span>
-                    </button>
-                @endforeach
-            </div>
+                        <!-- Top Pill Badge & Icon Button -->
+                        <div class="relative z-10 flex items-center justify-between">
+                            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-white text-[11px] font-bold tracking-wider uppercase shadow-xs">
+                                <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                                <span>Garment Trims</span>
+                            </span>
+                            <div class="h-10 w-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white flex items-center justify-center group-hover:bg-amber-500 group-hover:border-amber-500 transition-all duration-300 shadow-md">
+                                <svg class="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            </div>
+                        </div>
 
-            <!-- Products Showcase Grid -->
-            <div id="productShowcaseGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                @php $hasProducts = false; @endphp
-                @foreach($categories as $category)
-                    @foreach($category->products as $product)
-                        @php $hasProducts = true; @endphp
-                        <div class="product-card-item group bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between"
-                             data-category="{{ $category->slug ?? Str::slug($category->name) }}">
+                        <!-- Bottom Card Title & Action -->
+                        <div class="relative z-10 transform transition-transform duration-300 group-hover:-translate-y-1">
+                            <h3 class="text-2xl font-extrabold font-heading text-white tracking-tight group-hover:text-amber-400 transition-colors drop-shadow-sm mb-2">
+                                {{ $cat->name }}
+                            </h3>
+                            <p class="text-xs text-slate-300 font-medium mb-4 line-clamp-1">
+                                High-precision custom OEM production & wholesale supply
+                            </p>
                             
-                            <div>
-                                <!-- Image Container -->
-                                <div class="relative h-56 w-full overflow-hidden bg-slate-100">
-                                    @php
-                                        $imageSrc = $product->cover_image 
-                                            ? asset('upload/' . $product->cover_image) 
-                                            : ($product->images->first() ? asset('upload/' . $product->images->first()->image) : asset('echix/images/home-1/inner/products/1.jpg'));
-                                    @endphp
-                                    <img src="{{ $imageSrc }}" 
-                                         alt="{{ $product->name }}" 
-                                         class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                    
-                                    <!-- Category Pill Badge -->
-                                    <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-[11px] font-bold text-amber-400 border border-white/10 shadow-xs">
-                                        {{ $category->name }}
-                                    </div>
-
-                                    <!-- Quick View Overlay Button -->
-                                    <div class="absolute inset-0 bg-slate-950/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
-                                        <a href="{{ route('products.show', $product->slug) }}" 
-                                           class="px-5 py-2.5 rounded-xl bg-white text-slate-900 font-bold text-xs shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 hover:bg-amber-500 hover:text-white">
-                                            View Product Details
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <!-- Body -->
-                                <div class="p-5">
-                                    <h3 class="text-base font-bold font-heading text-slate-900 group-hover:text-amber-600 transition-colors line-clamp-1">
-                                        <a href="{{ route('products.show', $product->slug) }}">{{ $product->name }}</a>
-                                    </h3>
-                                    
-                                    @if(!empty($product->description))
-                                        <p class="text-xs text-slate-500 mt-2 line-clamp-2 leading-relaxed">
-                                            {{ strip_tags($product->description) }}
-                                        </p>
-                                    @else
-                                        <p class="text-xs text-slate-400 mt-2">Precision engineered apparel accessory.</p>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <!-- Card Footer -->
-                            <div class="px-5 pb-5 pt-2 border-t border-slate-100 flex items-center justify-between">
-                                <span class="text-xs font-semibold text-slate-500">In Stock / Custom OEM</span>
-                                <a href="{{ route('products.show', $product->slug) }}" 
-                                   class="inline-flex items-center gap-1.5 text-xs font-bold text-amber-600 group-hover:text-amber-700 transition-colors">
-                                    <span>Details</span>
-                                    <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
-                                </a>
+                            <div class="inline-flex items-center gap-2 text-xs font-bold text-amber-400 group-hover:text-amber-300 transition-colors">
+                                <span>Explore Collection</span>
+                                <svg class="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
                             </div>
                         </div>
-                    @endforeach
+                    </a>
                 @endforeach
+            </div>
 
-                @if(!$hasProducts)
-                    <!-- Fallback: Display Category Cards if no products are in database -->
-                    @foreach($allCategories as $cat)
-                        <div class="product-card-item group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300"
-                             data-category="{{ $cat->slug }}">
-                            <div class="relative h-56 w-full bg-slate-100 overflow-hidden">
-                                @if($cat->image)
-                                    <img src="{{ asset('upload/' . $cat->image) }}" alt="{{ $cat->name }}" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500">
-                                @else
-                                    <div class="h-full w-full flex items-center justify-center text-slate-400">No Image</div>
-                                @endif
-                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent"></div>
-                                <div class="absolute bottom-4 left-4 right-4 text-white">
-                                    <h4 class="text-lg font-bold font-heading">{{ $cat->name }}</h4>
-                                    <span class="text-xs text-amber-300">View Category Collection →</span>
-                                </div>
-                            </div>
+            <!-- Category Capabilities 4-Pillar Strip -->
+            <div class="mt-16 p-8 rounded-3xl bg-slate-50 border border-slate-200/90 shadow-2xs">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center sm:text-left">
+                    <div class="flex items-center gap-3.5">
+                        <div class="h-12 w-12 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
                         </div>
-                    @endforeach
-                @endif
+                        <div>
+                            <h4 class="text-sm font-bold font-heading text-slate-900">Custom OEM & ODM</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Built to brand tech pack specs</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3.5">
+                        <div class="h-12 w-12 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold font-heading text-slate-900">Rapid Sampling</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Physical swatches in 48-72h</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3.5">
+                        <div class="h-12 w-12 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold font-heading text-slate-900">Certified Quality</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Oeko-Tex 100 compliance</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3.5">
+                        <div class="h-12 w-12 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold font-heading text-slate-900">Global Doorstep Export</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Reliable international logistics</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Empty State when filtering finds no products -->
-            <div id="noProductsFound" class="hidden text-center py-16 bg-slate-50 rounded-2xl border border-slate-200 mt-6">
-                <svg class="w-12 h-12 text-slate-400 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/></svg>
-                <h4 class="text-lg font-bold text-slate-800">No products found in this category</h4>
-                <p class="text-xs text-slate-500 mt-1">Please check other categories or contact our team for custom manufacturing.</p>
-            </div>
-
-            <!-- View All Products CTA Button -->
+            <!-- View Full Catalog Button -->
             <div class="text-center mt-12">
                 <a href="{{ route('products.user') }}" 
                    class="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm shadow-md transition-all duration-200 transform hover:-translate-y-0.5">
-                    <span>Explore Full Products Catalog</span>
+                    <span>View Complete Product Catalog</span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                 </a>
             </div>
@@ -530,7 +502,7 @@
     <!-- ==================== INTERACTIVE SCRIPTS ==================== -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // 1. Hero Swiper
+            // 1. Hero Swiper (No Navigation Arrows)
             if (document.querySelector('.swiper-hero')) {
                 new Swiper('.swiper-hero', {
                     loop: true,
@@ -542,11 +514,10 @@
                     effect: 'fade',
                     fadeEffect: { crossFade: true },
                     pagination: { el: '.swiper-pagination', clickable: true },
-                    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
                 });
             }
 
-            // 2. Brands Swiper
+            // 2. Brands Swiper (Full Natural Color, Continuous Marquee)
             if (document.querySelector('.swiper-brands')) {
                 new Swiper('.swiper-brands', {
                     loop: true,
@@ -557,46 +528,12 @@
                     breakpoints: {
                         640: { slidesPerView: 3, spaceBetween: 20 },
                         768: { slidesPerView: 4, spaceBetween: 24 },
-                        1024: { slidesPerView: 6, spaceBetween: 28 },
+                        1024: { slidesPerView: 5, spaceBetween: 28 },
                     },
                 });
             }
 
-            // 3. Category Filter Tabs Logic
-            const filterBtns = document.querySelectorAll('.category-tab-btn');
-            const productCards = document.querySelectorAll('.product-card-item');
-            const noProductsFound = document.getElementById('noProductsFound');
-
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', function () {
-                    // Update active tab style
-                    filterBtns.forEach(b => {
-                        b.classList.remove('active', 'bg-amber-500', 'text-white', 'shadow-md', 'shadow-amber-500/25');
-                        b.classList.add('bg-slate-100', 'text-slate-700', 'hover:bg-slate-200');
-                    });
-                    this.classList.remove('bg-slate-100', 'text-slate-700', 'hover:bg-slate-200');
-                    this.classList.add('active', 'bg-amber-500', 'text-white', 'shadow-md', 'shadow-amber-500/25');
-
-                    const selectedCategory = this.dataset.category;
-                    let visibleCount = 0;
-
-                    productCards.forEach(card => {
-                        const cardCategory = card.dataset.category;
-                        if (selectedCategory === 'all' || cardCategory === selectedCategory) {
-                            card.style.display = 'flex';
-                            visibleCount++;
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-
-                    if (noProductsFound) {
-                        noProductsFound.classList.toggle('hidden', visibleCount > 0);
-                    }
-                });
-            });
-
-            // 4. About Us Tabs Logic
+            // 3. About Us Tabs Logic
             const aboutTabBtns = document.querySelectorAll('.about-tab-btn');
             const aboutTabContents = document.querySelectorAll('.about-tab-content');
 
@@ -616,7 +553,7 @@
                 });
             });
 
-            // 5. Video Modal Handling
+            // 4. Video Modal Handling
             const videoSrc = "https://www.youtube.com/embed/AVnJSxvFJSM?autoplay=1";
             const videoFrame = document.getElementById("videoFrame");
             const videoModal = document.getElementById('videoModal');

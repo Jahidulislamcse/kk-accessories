@@ -123,14 +123,14 @@
                 <div class="swiper swiper-brands">
                     <div class="swiper-wrapper items-center">
                         @foreach ($brands as $brand)
-                            <div class="swiper-slide flex justify-center items-center px-3">
-                                <div class="h-20 w-40 sm:w-48 p-3 rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:border-amber-400 hover:shadow-lg transition-all duration-300 flex items-center justify-center group">
+                            <div class="swiper-slide flex justify-center items-center px-1 sm:px-2 md:px-3">
+                                <div class="h-16 sm:h-20 w-full sm:w-48 p-2 sm:p-3 rounded-xl sm:rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:border-amber-400 hover:shadow-lg transition-all duration-300 flex items-center justify-center group">
                                     @if ($brand->image)
                                         <img src="{{ asset('upload/' . $brand->image) }}"
                                              alt="{{ $brand->name }}"
                                              class="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105">
                                     @else
-                                        <span class="text-xs font-semibold text-slate-700">{{ $brand->name }}</span>
+                                        <span class="text-[11px] sm:text-xs font-semibold text-slate-700 text-center truncate">{{ $brand->name }}</span>
                                     @endif
                                 </div>
                             </div>
@@ -521,18 +521,19 @@
                 });
             }
 
-            // 2. Brands Swiper (Full Natural Color, Continuous Marquee)
+            // 2. Brands Swiper (Full Natural Color, 3 Brands on Mobile)
             if (document.querySelector('.swiper-brands')) {
                 new Swiper('.swiper-brands', {
                     loop: true,
-                    slidesPerView: 2,
-                    spaceBetween: 16,
+                    slidesPerView: 3,
+                    spaceBetween: 10,
                     speed: 1500,
                     autoplay: { delay: 2500, disableOnInteraction: false },
                     breakpoints: {
-                        640: { slidesPerView: 3, spaceBetween: 20 },
-                        768: { slidesPerView: 4, spaceBetween: 24 },
-                        1024: { slidesPerView: 5, spaceBetween: 28 },
+                        640: { slidesPerView: 3, spaceBetween: 16 },
+                        768: { slidesPerView: 4, spaceBetween: 20 },
+                        1024: { slidesPerView: 5, spaceBetween: 24 },
+                        1280: { slidesPerView: 6, spaceBetween: 28 },
                     },
                 });
             }

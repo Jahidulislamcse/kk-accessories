@@ -7,7 +7,7 @@
     <!-- ==================== HERO SLIDER SECTION ==================== -->
     <section class="relative bg-slate-950 text-white overflow-hidden">
         @if ($sliders->count())
-            <div class="swiper swiper-hero w-full h-[400px] sm:h-[480px] md:h-[540px] lg:h-[620px]">
+            <div class="swiper swiper-hero w-full h-[360px] sm:h-[430px] md:h-[490px] lg:h-[550px]">
                 <div class="swiper-wrapper">
                     @foreach ($sliders as $slider)
                         <div class="swiper-slide relative flex items-center">
@@ -16,24 +16,24 @@
                                 style="background-image: url('{{ asset('upload/' . $slider->image_path) }}');">
                             </div>
                             
-                            <!-- Refined Cinematic Gradient with Top and Bottom Breathing Space -->
+                            <!-- Refined Cinematic Gradient with Balanced Top and Bottom Space -->
                             <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/60 to-slate-950/20"></div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/40"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-slate-950/25"></div>
 
-                            <!-- Content Container with Spacious Empty Space Top and Bottom -->
-                            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-8 sm:py-12 md:py-16">
+                            <!-- Content Container with 50% Reduced Top and Bottom Space -->
+                            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-4 sm:py-6 md:py-8">
                                 <div class="max-w-2xl">
-                                    <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-white/10 border border-white/20 text-amber-400 text-[9px] sm:text-xs font-semibold tracking-wide uppercase mb-2 sm:mb-4 backdrop-blur-md">
+                                    <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-white/10 border border-white/20 text-amber-400 text-[9px] sm:text-xs font-semibold tracking-wide uppercase mb-2 sm:mb-3 backdrop-blur-md">
                                         <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-400 animate-ping"></span>
                                         <span>Premier Garment Accessories</span>
                                     </div>
 
-                                    <h1 class="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold font-heading text-white tracking-tight leading-[1.2] mb-2 sm:mb-3.5 drop-shadow-md line-clamp-2">
+                                    <h1 class="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold font-heading text-white tracking-tight leading-[1.2] mb-1.5 sm:mb-3 drop-shadow-md line-clamp-2">
                                         {{ $slider->heading ?? 'Precision-Engineered Garment Trims & Accessories' }}
                                     </h1>
 
                                     @if(!empty($slider->desc))
-                                        <div class="text-[11px] sm:text-sm md:text-base text-slate-200 font-normal leading-relaxed mb-4 sm:mb-6 line-clamp-2 sm:line-clamp-3 max-w-xl">
+                                        <div class="text-[11px] sm:text-sm md:text-base text-slate-200 font-normal leading-relaxed mb-3 sm:mb-5 line-clamp-2 sm:line-clamp-3 max-w-xl">
                                             {!! strip_tags($slider->desc) !!}
                                         </div>
                                     @endif
@@ -57,11 +57,11 @@
                 </div>
 
                 <!-- Swiper Pagination (No side arrows as requested) -->
-                <div class="swiper-pagination !bottom-3 sm:!bottom-6"></div>
+                <div class="swiper-pagination !bottom-2.5 sm:!bottom-4"></div>
             </div>
         @else
             <!-- Fallback Static Hero -->
-            <div class="relative flex items-center h-[400px] sm:h-[480px] md:h-[540px] lg:h-[620px] bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+            <div class="relative flex items-center h-[360px] sm:h-[430px] md:h-[490px] lg:h-[550px] bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
                 <div class="max-w-7xl mx-auto px-6 relative z-10 text-center w-full">
                     <span class="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-sm font-semibold mb-6">
                         Leading Accessories Manufacturer

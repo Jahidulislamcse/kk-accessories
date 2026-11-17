@@ -27,36 +27,78 @@
     </section>
 
     <!-- ==================== MAIN CATALOG SECTION ==================== -->
+    <style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none !important;
+            scrollbar-width: none !important;
+        }
+    </style>
+
     <section class="py-14 sm:py-20 bg-slate-50 min-h-screen">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <!-- Category Filter Tabs Bar -->
             <div class="mb-12">
-                <div class="flex items-center justify-between pb-3 mb-4">
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500 font-heading">Filter by Category:</span>
-                    <span class="text-xs font-medium text-slate-400">Select any category to view items</span>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 mb-3 gap-2">
+                    <div class="flex items-center gap-3">
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-500 font-heading">Filter by Category:</span>
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-200/80 text-[11px] font-semibold text-slate-600">
+                            <span class="flex items-center gap-0.5 text-xs font-bold text-amber-600">
+                                <kbd class="px-1 py-0.2 bg-white rounded shadow-2xs border border-slate-300">←</kbd>
+                                <kbd class="px-1 py-0.2 bg-white rounded shadow-2xs border border-slate-300">→</kbd>
+                            </span>
+                            <span>Arrow keys to switch</span>
+                        </span>
+                    </div>
+
+                    <div class="flex items-center justify-between sm:justify-end gap-3">
+                        <span class="text-xs font-medium text-slate-400 hidden md:inline">Select any category to view items</span>
+                        
+                        <!-- Navigation Arrow Buttons -->
+                        <div class="inline-flex items-center gap-1.5 bg-white p-1 rounded-xl border border-slate-200 shadow-2xs">
+                            <button type="button" id="prevCategoryBtn" 
+                                    class="h-8 w-8 rounded-lg text-slate-600 hover:text-amber-600 hover:bg-amber-50 flex items-center justify-center transition-all cursor-pointer" 
+                                    title="Previous Category (Left Arrow key ←)">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                            </button>
+                            <span class="h-4 w-px bg-slate-200"></span>
+                            <button type="button" id="nextCategoryBtn" 
+                                    class="h-8 w-8 rounded-lg text-slate-600 hover:text-amber-600 hover:bg-amber-50 flex items-center justify-center transition-all cursor-pointer" 
+                                    title="Next Category (Right Arrow key →)">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="flex items-center gap-2.5 overflow-x-auto pb-4 scrollbar-none" id="productCategoryTabs">
-                    <!-- All Tab -->
-                    <button type="button"
-                            class="category-tab-pill flex-shrink-0 px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm tracking-wide transition-all duration-200 flex items-center gap-2 {{ !$selectedCategory ? 'active bg-amber-500 text-white shadow-md shadow-amber-500/25 border-amber-500' : 'bg-white text-slate-700 hover:text-amber-600 hover:bg-slate-50 border border-slate-200 shadow-2xs' }}"
-                            data-category="all">
-                        <span>All Categories</span>
-                    </button>
-
-                    <!-- Category Pills -->
-                    @foreach ($allCategories as $cat)
+                <!-- Horizontal Tabs Container with hidden scrollbar -->
+                <div class="relative">
+                    <div class="flex items-center gap-2.5 overflow-x-auto pb-2 scroll-smooth no-scrollbar" id="productCategoryTabs" style="-webkit-overflow-scrolling: touch;">
+                        <!-- All Tab -->
                         <button type="button"
-                                class="category-tab-pill flex-shrink-0 px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 {{ $selectedCategory == $cat->slug ? 'active bg-amber-500 text-white shadow-md shadow-amber-500/25 border-amber-500' : 'bg-white text-slate-700 hover:text-amber-600 hover:bg-slate-50 border border-slate-200 shadow-2xs' }}"
-                                data-category="{{ $cat->slug }}">
-                            @if ($cat->image)
-                                <img src="{{ asset('upload/' . $cat->image) }}" alt="{{ $cat->name }}"
-                                     class="w-5 h-5 rounded-full object-cover">
-                            @endif
-                            <span>{{ $cat->name }}</span>
+                                class="category-tab-pill flex-shrink-0 px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm tracking-wide transition-all duration-200 flex items-center gap-2 cursor-pointer {{ !$selectedCategory ? 'active bg-amber-500 text-white shadow-md shadow-amber-500/25 border-amber-500' : 'bg-white text-slate-700 hover:text-amber-600 hover:bg-slate-50 border border-slate-200 shadow-2xs' }}"
+                                data-category="all">
+                            <span>All Categories</span>
                         </button>
-                    @endforeach
+
+                        <!-- Category Pills -->
+                        @foreach ($allCategories as $cat)
+                            <button type="button"
+                                    class="category-tab-pill flex-shrink-0 px-3.5 sm:px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 cursor-pointer {{ $selectedCategory == $cat->slug ? 'active bg-amber-500 text-white shadow-md shadow-amber-500/25 border-amber-500' : 'bg-white text-slate-700 hover:text-amber-600 hover:bg-slate-50 border border-slate-200 shadow-2xs' }}"
+                                    data-category="{{ $cat->slug }}">
+                                @if ($cat->image)
+                                    <img src="{{ asset('upload/' . $cat->image) }}" alt="{{ $cat->name }}"
+                                         class="w-5 h-5 rounded-full object-cover">
+                                @endif
+                                <span>{{ $cat->name }}</span>
+                            </button>
+                        @endforeach
+                    </div>
                 </div>
             </div>
 
@@ -154,65 +196,149 @@
             const tabs = document.querySelectorAll('.category-tab-pill');
             const productGrid = document.getElementById('productGrid');
             const loadingIndicator = document.getElementById('productGridLoading');
+            const tabsContainer = document.getElementById('productCategoryTabs');
+            const prevCategoryBtn = document.getElementById('prevCategoryBtn');
+            const nextCategoryBtn = document.getElementById('nextCategoryBtn');
 
-            // Category Tab Filter
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function () {
-                    tabs.forEach(t => {
-                        t.classList.remove('active', 'bg-amber-500', 'text-white', 'shadow-md', 'shadow-amber-500/25', 'border-amber-500');
-                        t.classList.add('bg-white', 'text-slate-700', 'hover:text-amber-600', 'hover:bg-slate-50', 'border', 'border-slate-200', 'shadow-2xs');
-                    });
-
-                    this.classList.remove('bg-white', 'text-slate-700', 'hover:text-amber-600', 'hover:bg-slate-50', 'border', 'border-slate-200', 'shadow-2xs');
-                    this.classList.add('active', 'bg-amber-500', 'text-white', 'shadow-md', 'shadow-amber-500/25', 'border-amber-500');
-
-                    const categorySlug = this.dataset.category;
-
-                    // Update URL without page reload
-                    const url = new URL(window.location);
-                    if (categorySlug === 'all') {
-                        url.searchParams.delete('category');
-                    } else {
-                        url.searchParams.set('category', categorySlug);
-                    }
-                    window.history.pushState({}, '', url);
-
-                    // Show loader
-                    if (productGrid && loadingIndicator) {
-                        productGrid.style.opacity = '0.3';
-                        loadingIndicator.classList.remove('hidden');
-                    }
-
-                    // AJAX Fetch
-                    fetch(`{{ route('products.user') }}?category=${categorySlug}`, {
-                        headers: {
-                            'X-Requested-With': 'XMLHttpRequest'
-                        }
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (productGrid) {
-                            productGrid.innerHTML = data.html;
-                            productGrid.style.opacity = '1';
-                        }
-                        if (loadingIndicator) {
-                            loadingIndicator.classList.add('hidden');
-                        }
-                    })
-                    .catch(err => {
-                        console.error(err);
-                        if (productGrid) productGrid.style.opacity = '1';
-                        if (loadingIndicator) loadingIndicator.classList.add('hidden');
-                    });
-                });
-            });
-
-            // Slideout Quotation Drawer Toggle
+            // Slideout Quotation Drawer Toggle elements
             const triggerBtn = document.getElementById('quotationTriggerBtn');
             const closeBtn = document.getElementById('closeDrawerBtn');
             const drawer = document.getElementById('quotationDrawer');
             const backdrop = document.getElementById('quotationBackdrop');
 
+            // Central Tab Activation Function
+            function activateTab(targetTab, triggerFetch = true) {
+                if (!targetTab) return;
+
+                tabs.forEach(t => {
+                    t.classList.remove('active', 'bg-amber-500', 'text-white', 'shadow-md', 'shadow-amber-500/25', 'border-amber-500');
+                    t.classList.add('bg-white', 'text-slate-700', 'hover:text-amber-600', 'hover:bg-slate-50', 'border', 'border-slate-200', 'shadow-2xs');
+                });
+
+                targetTab.classList.remove('bg-white', 'text-slate-700', 'hover:text-amber-600', 'hover:bg-slate-50', 'border', 'border-slate-200', 'shadow-2xs');
+                targetTab.classList.add('active', 'bg-amber-500', 'text-white', 'shadow-md', 'shadow-amber-500/25', 'border-amber-500');
+
+                // Smoothly center the active tab in the horizontal scroll container
+                targetTab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+
+                const categorySlug = targetTab.dataset.category;
+
+                // Update browser URL without reloading
+                const url = new URL(window.location);
+                if (categorySlug === 'all') {
+                    url.searchParams.delete('category');
+                } else {
+                    url.searchParams.set('category', categorySlug);
+                }
+                window.history.pushState({}, '', url);
+
+                if (!triggerFetch) return;
+
+                // Show loader
+                if (productGrid && loadingIndicator) {
+                    productGrid.style.opacity = '0.3';
+                    loadingIndicator.classList.remove('hidden');
+                }
+
+                // AJAX Fetch
+                fetch(`{{ route('products.user') }}?category=${categorySlug}`, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (productGrid) {
+                        productGrid.innerHTML = data.html;
+                        productGrid.style.opacity = '1';
+                    }
+                    if (loadingIndicator) {
+                        loadingIndicator.classList.add('hidden');
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    if (productGrid) productGrid.style.opacity = '1';
+                    if (loadingIndicator) loadingIndicator.classList.add('hidden');
+                });
+            }
+
+            // Switch Category using Arrow Keys or Buttons
+            function switchCategory(direction) {
+                const tabsArr = Array.from(tabs);
+                if (!tabsArr.length) return;
+
+                let currentIndex = tabsArr.findIndex(t => t.classList.contains('active'));
+                if (currentIndex === -1) currentIndex = 0;
+
+                let targetIndex;
+                if (direction === 'prev') {
+                    targetIndex = currentIndex - 1;
+                    if (targetIndex < 0) targetIndex = tabsArr.length - 1; // loop around
+                } else {
+                    targetIndex = currentIndex + 1;
+                    if (targetIndex >= tabsArr.length) targetIndex = 0; // loop around
+                }
+
+                activateTab(tabsArr[targetIndex], true);
+            }
+
+            // Click listener for each category pill
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function () {
+                    activateTab(this, true);
+                });
+            });
+
+            // On-Screen Arrow Buttons
+            if (prevCategoryBtn) {
+                prevCategoryBtn.addEventListener('click', () => switchCategory('prev'));
+            }
+            if (nextCategoryBtn) {
+                nextCategoryBtn.addEventListener('click', () => switchCategory('next'));
+            }
+
+            // Global Keyboard Arrow Key Listener
+            document.addEventListener('keydown', (e) => {
+                // Ignore if user is currently typing in an input, textarea, or select
+                const activeEl = document.activeElement;
+                if (activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.tagName === 'SELECT' || activeEl.isContentEditable)) {
+                    return;
+                }
+
+                // Ignore if drawer is open
+                if (drawer && !drawer.classList.contains('translate-x-full')) {
+                    return;
+                }
+
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    switchCategory('prev');
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    switchCategory('next');
+                }
+            });
+
+            // Natural Mouse Wheel Horizontal Scrolling on Tabs
+            if (tabsContainer) {
+                tabsContainer.addEventListener('wheel', (e) => {
+                    if (e.deltaY !== 0 && !e.shiftKey) {
+                        e.preventDefault();
+                        tabsContainer.scrollLeft += e.deltaY;
+                    }
+                }, { passive: false });
+            }
+
+            // Ensure active tab on load is centered
+            const initialActiveTab = document.querySelector('.category-tab-pill.active');
+            if (initialActiveTab) {
+                setTimeout(() => {
+                    initialActiveTab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                }, 150);
+            }
+
+            // Slideout Quotation Drawer Toggle
             function openDrawer() {
                 if (drawer && backdrop) {
                     backdrop.classList.remove('hidden');

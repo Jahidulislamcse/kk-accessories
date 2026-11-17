@@ -64,6 +64,14 @@
                             <span class="text-white text-lg">Sliders</span>
                         </a>
                     </li>
+                    
+                    <li class="nav-item">
+                        <a href="{{ route('admin.gallery.index') }}"
+                            class="nav-link d-flex align-items-center {{ request()->routeIs('admin.gallery.index') ? 'active bg-warning text-white' : 'text-dark' }}">
+                            <img src="{{ asset('backend/icons/dashboard.png') }}" alt="Dashboard Icon" class="me-2" style="width:32px; height:32px;">
+                            <span class="text-white text-lg">Gallery</span>
+                        </a>
+                    </li>
                    
                     <li class="nav-item">
                         <a href="{{ route('admin.services.index') }}"

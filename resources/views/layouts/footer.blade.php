@@ -1,49 +1,77 @@
-<footer class="bg-gray-800 text-white">
-    <div class="container mx-auto px-6 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-                <div class="flex items-center gap-3 mb-4">
-                    <div class="text-[var(--primary-color)]">
-                        @php
-                        $settings = \App\Models\Setting::first();
-                        @endphp
+@php
+    $settings = \App\Models\Setting::first();
+    $logo = $settings && $settings->logo ? asset('upload/' . $settings->logo) : asset('echix/images/white-logo.png');
+    $company = $settings->company ?? 'K&K Accessories';
+@endphp
 
-                        @if($settings && $settings->logo)
-                        <img src="{{ asset('upload/' . $settings->logo) }}" alt="Logo" height="32" width="32">
-                        @else
-                        <svg class="feather feather-shield" fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                        </svg>
-                        @endif
-
+<footer class="footer-wrapper footer-one section-bg-2">
+    <div class="footer-one__bg-image bg-cover" style="background-image: url({{ asset('echix/images/home-1/footer/footer-bg.png') }});">
+        <img class="shape-1" src="{{ asset('echix/images/home-1/footer/shape%2001.png') }}" alt="" />
+        <img class="shape-2" src="{{ asset('echix/images/home-1/footer/shape%2002.png') }}" alt="" />
+        <div class="container">
+            <div class="footer-one__top">
+                <div class="footer-one__top-inner">
+                    <div class="left-text">
+                        <h2>Need custom accessories?</h2>
                     </div>
-                    <h1 class="text-2xl font-bold text-white tracking-tight">
-                        @if($settings && $settings->company)
-                        {{$settings->company}}
-                        @else
-                        Company Name
-                        @endif
-                    </h1>
+                    <div class="right">
+                        <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+                        <div class="email">
+                            <span>Email Us</span>
+                            <a href="mailto:{{ optional($settings)->contact_mail ?? 'info@example.com' }}">{{ optional($settings)->contact_mail ?? 'info@example.com' }}</a>
+                        </div>
+                    </div>
+                    <div class="circle-box"></div>
                 </div>
             </div>
-            <div>
-                <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-                <ul class="space-y-2">
-                    <li><a class="text-gray-400 hover:text-white transition-colors duration-300" href="{{ route('branches.user') }}">Branches</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="text-lg font-semibold mb-4">More</h3>
-                <ul class="space-y-2">
-                    <li><a class="text-gray-400 hover:text-white transition-colors duration-300" href="{{ route('contact') }}">Contact Us</a></li>
-                </ul>
+            <div class="footer-one__widget-inner">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-6 col-md-6">
+                        <div class="footer-one__logo style-1 me-xl-5">
+                            <a href="{{ route('home') }}"><img src="{{ $logo }}" alt="{{ $company }}"></a>
+                            <p>{{ $company }} delivers apparel accessories with dependable service, quality production, and responsive support.</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-6 col-md-6">
+                        <div class="footer-widget">
+                            <h4 class="widget-title">Links</h4>
+                            <ul class="usefull-link">
+                                <li><a href="{{ route('home') }}">Home</a></li>
+                                <li><a href="{{ route('products.user') }}">Products</a></li>
+                                <li><a href="{{ route('services') }}">Services</a></li>
+                                <li><a href="{{ route('contact') }}">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6">
+                        <div class="footer-widget">
+                            <h4 class="widget-title">Explore</h4>
+                            <ul class="usefull-link">
+                                <li><a href="{{ route('managing-body') }}">Management</a></li>
+                                <li><a href="{{ route('gallery.user') }}">Gallery</a></li>
+                                <li><a href="{{ route('branches.user') }}">Factories</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6">
+                        <div class="footer-widget newsletter">
+                            <h4 class="widget-title">Contact</h4>
+                            @if(optional($settings)->address)<p>{{ $settings->address }}</p>@endif
+                            @if(optional($settings)->phone_number)<p><a href="tel:{{ preg_replace('/\s+/', '', $settings->phone_number) }}">{{ $settings->phone_number }}</a></p>@endif
+                            <div class="footer-social-icon">
+                                @if(optional($settings)->facebook)<a href="{{ $settings->facebook }}" target="_blank"><i class="fab fa-facebook-f"></i></a>@endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="mt-12 border-t border-gray-700 pt-8 text-center text-gray-500">
-                <div class="copyright">
-                    Copyright © 2025 Developed & Maintained By 
-                        <a href="https://www.cyrapid.com" target="_blank" rel="noopener noreferrer">Jahidul Islam (jahidcse181@gmail.com)</a>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="content">
+                    <p>Copyright &copy; {{ date('Y') }} {{ $company }}. Developed & Maintained By Jahidul Islam.</p>
                 </div>
+            </div>
         </div>
     </div>
 </footer>

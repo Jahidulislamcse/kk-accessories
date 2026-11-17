@@ -28,13 +28,13 @@
                 </div>
 
                 <div class="mb-4">
-                    <label class="mb-1" class="form-label">About Description</label>
-                    <textarea name="about_desc" class="form-control">{{ $settings->about_desc ?? '' }}</textarea>
+                    <label class="mb-1 form-label">About Description</label>
+                    <textarea id="about_desc" name="about_desc" class="form-control">{{ $settings->about_desc ?? '' }}</textarea>
                 </div>
 
                 <div class="mb-4">
-                    <label class="mb-1" class="form-label">Mission and Vision</label>
-                    <textarea name="mission_vision" class="form-control">{{ $settings->mission_vision ?? '' }}</textarea>
+                    <label class="mb-1 form-label">Mission and Vision</label>
+                    <textarea id="mission_vision" name="mission_vision" class="form-control">{{ $settings->mission_vision ?? '' }}</textarea>
                 </div>
 
                 <div class="mb-4">
@@ -96,5 +96,18 @@
 </script>
 
 
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#about_desc'))
+        .catch(error => {
+            console.error(error);
+        });
 
+    ClassicEditor
+        .create(document.querySelector('#mission_vision'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 @endsection

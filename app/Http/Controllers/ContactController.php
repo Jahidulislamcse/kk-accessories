@@ -34,7 +34,7 @@ class ContactController extends Controller
         Message::create($request->only('name', 'email', 'message'));
 
         try {
-            $adminEmail = 'kkaccessories06@gmail.com'; 
+            $adminEmail = 'jahidcse181@gmail.com'; 
             $data = [
                 'name' => $request->name,
                 'email' => $request->email,

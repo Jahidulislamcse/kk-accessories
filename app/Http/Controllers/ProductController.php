@@ -22,9 +22,9 @@ class ProductController extends Controller
         $setting = Setting::first();
         $allCategories = Category::select('name', 'slug', 'image')->get();
 
-        if ($request->ajax()) {
-            $categorySlug = $request->input('category');
+        $categorySlug = $request->input('category');
 
+        if ($request->ajax()) {
             if ($categorySlug && $categorySlug !== 'all') {
                 $categories = Category::where('slug', $categorySlug)
                     ->with('products.images')
@@ -38,8 +38,15 @@ class ProductController extends Controller
             return response()->json(['html' => $html]);
         }
 
-        $categories = Category::with('products.images')->get();
-        $selectedCategory = null;
+        if ($categorySlug && $categorySlug !== 'all') {
+            $categories = Category::where('slug', $categorySlug)
+                ->with('products.images')
+                ->get();
+            $selectedCategory = $categorySlug;
+        } else {
+            $categories = Category::with('products.images')->get();
+            $selectedCategory = null;
+        }
 
         return view('products.index', compact('categories', 'setting', 'allCategories', 'selectedCategory'));
     }

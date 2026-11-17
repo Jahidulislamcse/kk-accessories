@@ -65,14 +65,6 @@
                     Gallery
                 </a>
 
-                <a href="{{ route('branches.user') }}"
-                   class="px-3.5 py-2 text-sm font-semibold rounded-lg transition-all duration-200 
-                   {{ request()->routeIs('branches.user') 
-                       ? 'text-amber-400 bg-amber-500/10' 
-                       : 'text-slate-300 hover:text-white hover:bg-white/5' }}">
-                    Factories
-                </a>
-
                 <a href="{{ route('contact') }}"
                    class="px-3.5 py-2 text-sm font-semibold rounded-lg transition-all duration-200 
                    {{ request()->routeIs('contact') 
@@ -118,9 +110,6 @@
             </a>
             <a href="{{ route('gallery.user') }}" class="block px-4 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('gallery.user') ? 'bg-amber-500 text-white' : 'text-slate-300 hover:bg-white/5' }}">
                 Gallery
-            </a>
-            <a href="{{ route('branches.user') }}" class="block px-4 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('branches.user') ? 'bg-amber-500 text-white' : 'text-slate-300 hover:bg-white/5' }}">
-                Factories
             </a>
             <a href="{{ route('contact') }}" class="block px-4 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('contact') ? 'bg-amber-500 text-white' : 'text-slate-300 hover:bg-white/5' }}">
                 Contact

@@ -7,7 +7,7 @@
     <!-- ==================== HERO SLIDER SECTION ==================== -->
     <section class="relative bg-slate-950 text-white overflow-hidden">
         @if ($sliders->count())
-            <div class="swiper swiper-hero w-full h-[70vh] min-h-[500px] max-h-[750px]">
+            <div class="swiper swiper-hero w-full h-[580px] sm:h-[640px] lg:h-[70vh] min-h-[550px] lg:min-h-[620px] max-h-[750px]">
                 <div class="swiper-wrapper">
                     @foreach ($sliders as $slider)
                         <div class="swiper-slide relative flex items-center">
@@ -21,32 +21,32 @@
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
 
                             <!-- Content Container -->
-                            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-12">
+                            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-8 sm:py-12">
                                 <div class="max-w-2xl">
-                                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-amber-400 text-xs sm:text-sm font-semibold tracking-wide uppercase mb-6 backdrop-blur-md">
-                                        <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+                                    <div class="inline-flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/10 border border-white/20 text-amber-400 text-[10px] sm:text-xs font-semibold tracking-wide uppercase mb-4 sm:mb-6 backdrop-blur-md">
+                                        <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-400 animate-ping"></span>
                                         <span>Premier Garment Accessories</span>
                                     </div>
 
-                                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white tracking-tight leading-[1.15] mb-5 drop-shadow-md">
+                                    <h1 class="text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold font-heading text-white tracking-tight leading-[1.2] mb-3 sm:mb-5 drop-shadow-md">
                                         {{ $slider->heading ?? 'Precision-Engineered Garment Trims & Accessories' }}
                                     </h1>
 
                                     @if(!empty($slider->desc))
-                                        <div class="text-base sm:text-lg text-slate-200 font-normal leading-relaxed mb-8 line-clamp-3">
+                                        <div class="text-xs sm:text-base lg:text-lg text-slate-200 font-normal leading-relaxed mb-6 sm:mb-8 line-clamp-3 sm:line-clamp-4">
                                             {!! strip_tags($slider->desc) !!}
                                         </div>
                                     @endif
 
-                                    <div class="flex flex-wrap items-center gap-4">
+                                    <div class="flex flex-wrap items-center gap-3 sm:gap-4">
                                         <a href="#categories-showcase"
-                                           class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold text-sm sm:text-base shadow-lg shadow-amber-500/25 transition-all duration-200 transform hover:-translate-y-0.5">
+                                           class="inline-flex items-center gap-2 px-5 py-2.5 sm:px-7 sm:py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold text-xs sm:text-sm md:text-base shadow-lg shadow-amber-500/25 transition-all duration-200 transform hover:-translate-y-0.5">
                                             <span>Explore Categories</span>
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                                         </a>
 
                                         <a href="{{ route('contact') }}"
-                                           class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white/15 hover:bg-white/25 text-white font-semibold text-sm sm:text-base border border-white/25 backdrop-blur-md transition-all duration-200 transform hover:-translate-y-0.5">
+                                           class="inline-flex items-center gap-1.5 px-5 py-2.5 sm:px-7 sm:py-3.5 rounded-xl bg-white/15 hover:bg-white/25 text-white font-semibold text-xs sm:text-sm md:text-base border border-white/25 backdrop-blur-md transition-all duration-200 transform hover:-translate-y-0.5">
                                             <span>Request a Quote</span>
                                         </a>
                                     </div>

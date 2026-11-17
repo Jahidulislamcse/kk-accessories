@@ -5,23 +5,22 @@
 @section('content')
 
     <!-- ==================== HERO SLIDER SECTION ==================== -->
-    <section class="relative bg-slate-950 text-white overflow-hidden">
+    <section class="relative bg-slate-950 text-white overflow-hidden p-0 m-0">
         @if ($sliders->count())
-            <div class="swiper swiper-hero w-full h-[360px] sm:h-[430px] md:h-[490px] lg:h-[550px]">
-                <div class="swiper-wrapper">
+            <div class="swiper swiper-hero w-full h-[340px] sm:h-[440px] md:h-[520px] lg:h-[580px] p-0 m-0">
+                <div class="swiper-wrapper h-full">
                     @foreach ($sliders as $slider)
-                        <div class="swiper-slide relative flex items-center">
-                            <!-- Background Image with Clean Visibility -->
-                            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 scale-100"
-                                style="background-image: url('{{ asset('upload/' . $slider->image_path) }}');">
-                            </div>
+                        <div class="swiper-slide relative h-full w-full flex items-center overflow-hidden p-0 m-0">
+                            <!-- Full Edge-to-Edge Image - ZERO top/bottom empty space -->
+                            <img src="{{ asset('upload/' . $slider->image_path) }}"
+                                 alt="{{ $slider->heading ?? 'KK Accessories' }}"
+                                 class="absolute inset-0 w-full h-full object-cover object-center pointer-events-none transition-transform duration-1000 scale-100">
                             
-                            <!-- Refined Cinematic Gradient with Balanced Top and Bottom Space -->
-                            <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/60 to-slate-950/20"></div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-slate-950/25"></div>
+                            <!-- Subtle Horizontal Gradient for Text Readability -->
+                            <div class="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/45 to-transparent pointer-events-none"></div>
 
-                            <!-- Content Container with 50% Reduced Top and Bottom Space -->
-                            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-4 sm:py-6 md:py-8">
+                            <!-- Content Container -->
+                            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-4 sm:py-6 md:py-10">
                                 <div class="max-w-2xl">
                                     <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-white/10 border border-white/20 text-amber-400 text-[9px] sm:text-xs font-semibold tracking-wide uppercase mb-2 sm:mb-3 backdrop-blur-md">
                                         <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-400 animate-ping"></span>
@@ -41,13 +40,13 @@
                                     <div class="flex flex-wrap items-center gap-2.5 sm:gap-4">
                                         <a href="#categories-showcase"
                                            class="inline-flex items-center gap-1.5 px-4 py-2 sm:px-6 sm:py-2.5 rounded-lg sm:rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold text-[11px] sm:text-sm md:text-base shadow-md shadow-amber-500/25 transition-all duration-200">
-                                            <span>Explore Categories</span>
-                                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                           <span>Explore Categories</span>
+                                           <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                                         </a>
 
                                         <a href="{{ route('contact') }}"
                                            class="inline-flex items-center gap-1 px-4 py-2 sm:px-6 sm:py-2.5 rounded-lg sm:rounded-xl bg-white/15 hover:bg-white/25 text-white font-semibold text-[11px] sm:text-sm md:text-base border border-white/25 backdrop-blur-md transition-all duration-200">
-                                            <span>Request a Quote</span>
+                                           <span>Request a Quote</span>
                                         </a>
                                     </div>
                                 </div>
@@ -61,7 +60,7 @@
             </div>
         @else
             <!-- Fallback Static Hero -->
-            <div class="relative flex items-center h-[360px] sm:h-[430px] md:h-[490px] lg:h-[550px] bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+            <div class="relative flex items-center h-[340px] sm:h-[440px] md:h-[520px] lg:h-[580px] bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
                 <div class="max-w-7xl mx-auto px-6 relative z-10 text-center w-full">
                     <span class="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-sm font-semibold mb-6">
                         Leading Accessories Manufacturer

@@ -156,51 +156,126 @@
                 </p>
             </div>
 
-            <!-- Modern Category Cards Grid (Small & Compact in Mobile View) -->
-            <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 lg:gap-7">
-                @foreach($allCategories as $cat)
+            <!-- Modern Bento Mosaic Category Showcase -->
+            @php
+                // Bento Mosaic Pattern definition (cycles smoothly for any number of categories)
+                $bentoPatterns = [
+                    0 => 'hero',      // 2 cols, 2 rows (Hero Anchor)
+                    1 => 'square',    // 1 col, 1 row
+                    2 => 'square',    // 1 col, 1 row
+                    3 => 'wide',      // 2 cols, 1 row
+                    4 => 'wide',      // 2 cols, 1 row
+                    5 => 'tall',      // 1 col, 2 rows (Tall Portrait)
+                    6 => 'square',    // 1 col, 1 row
+                    7 => 'wide',      // 2 cols, 1 row
+                ];
+            @endphp
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 [grid-auto-flow:dense] gap-4 sm:gap-5 lg:gap-6">
+                @foreach($allCategories as $index => $cat)
+                    @php
+                        $cycleIndex = $index % count($bentoPatterns);
+                        $tileType = $bentoPatterns[$cycleIndex];
+
+                        // Grid span & height configurations per tile type
+                        if ($tileType === 'hero') {
+                            $gridClasses = 'col-span-1 sm:col-span-2 lg:col-span-2 lg:row-span-2 min-h-[320px] sm:min-h-[420px] lg:min-h-[560px] p-5 sm:p-7 lg:p-8';
+                        } elseif ($tileType === 'wide') {
+                            $gridClasses = 'col-span-1 sm:col-span-2 lg:col-span-2 lg:row-span-1 min-h-[220px] sm:min-h-[260px] lg:min-h-[268px] p-4 sm:p-6';
+                        } elseif ($tileType === 'tall') {
+                            $gridClasses = 'col-span-1 sm:col-span-1 lg:col-span-1 lg:row-span-2 min-h-[300px] sm:min-h-[400px] lg:min-h-[560px] p-4 sm:p-6';
+                        } else {
+                            // Standard square tile
+                            $gridClasses = 'col-span-1 sm:col-span-1 lg:col-span-1 lg:row-span-1 min-h-[220px] sm:min-h-[260px] lg:min-h-[268px] p-4 sm:p-5 lg:p-6';
+                        }
+                    @endphp
+
                     <a href="{{ route('products.user') }}?category={{ $cat->slug ?? Str::slug($cat->name) }}"
-                       class="group relative h-48 sm:h-72 lg:h-84 rounded-2xl sm:rounded-3xl overflow-hidden shadow-xs hover:shadow-2xl border border-slate-200/90 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between p-3.5 sm:p-5 lg:p-6">
+                       class="group relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xs hover:shadow-2xl border border-slate-200/90 hover:border-amber-500/50 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between {{ $gridClasses }}">
                         
                         <!-- Background Image Container with Smooth Zoom -->
                         <div class="absolute inset-0 bg-slate-950 overflow-hidden">
                             @if($cat->image)
                                 <img src="{{ asset('upload/' . $cat->image) }}"
                                      alt="{{ $cat->name }}"
-                                     class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110">
+                                     class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
                             @else
                                 <div class="w-full h-full flex items-center justify-center bg-slate-800 text-slate-500">
-                                    <svg class="w-10 h-10 sm:w-16 sm:h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                                 </div>
                             @endif
-                            <!-- Multi-stop Dark Gradient for optimal text legibility -->
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-slate-950/15 opacity-85 group-hover:opacity-90 transition-opacity"></div>
-                        </div>
-
-                        <!-- Top Pill Badge & Icon Button -->
-                        <div class="relative z-10 flex items-center justify-between">
-                            <span class="inline-flex items-center gap-1 px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-white text-[9px] sm:text-[11px] font-bold tracking-wider uppercase shadow-xs">
-                                <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
-                                <span class="truncate max-w-[80px] sm:max-w-none">Trims</span>
-                            </span>
-                            <div class="h-6 w-6 sm:h-8 sm:w-8 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white flex items-center justify-center group-hover:bg-amber-500 group-hover:border-amber-500 transition-all duration-300 shadow-sm">
-                                <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                            </div>
-                        </div>
-
-                        <!-- Bottom Card Title & Action -->
-                        <div class="relative z-10 transform transition-transform duration-300 group-hover:-translate-y-0.5">
-                            <h3 class="text-sm sm:text-lg lg:text-xl font-bold font-heading text-white tracking-tight group-hover:text-amber-400 transition-colors drop-shadow-sm mb-0.5 sm:mb-1 line-clamp-1">
-                                {{ $cat->name }}
-                            </h3>
-                            <p class="hidden sm:block text-[11px] lg:text-xs text-slate-300 font-medium mb-2.5 line-clamp-1">
-                                Custom OEM production & wholesale supply
-                            </p>
+                            <!-- Multi-stop Dark Cinematic Gradient for optimal legibility -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-slate-950/20 opacity-85 group-hover:opacity-90 transition-opacity"></div>
                             
-                            <div class="inline-flex items-center gap-1 text-[10px] sm:text-xs font-bold text-amber-400 group-hover:text-amber-300 transition-colors">
-                                <span>Explore</span>
-                                <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                            @if($tileType === 'hero')
+                                <div class="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-transparent to-transparent pointer-events-none"></div>
+                            @endif
+                        </div>
+
+                        <!-- Top Bar: Tag Badge & Circular Action Button -->
+                        <div class="relative z-10 flex items-center justify-between gap-2">
+                            @if($tileType === 'hero')
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white text-[10px] sm:text-xs font-bold tracking-wider uppercase shadow-md backdrop-blur-md">
+                                    <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
+                                    <span>✦ Featured Line</span>
+                                </span>
+                            @else
+                                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-white text-[9px] sm:text-[11px] font-bold tracking-wider uppercase shadow-xs">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                                    <span class="truncate max-w-[90px] sm:max-w-none">Trims</span>
+                                </span>
+                            @endif
+
+                            <div class="h-7 w-7 sm:h-9 sm:w-9 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white flex items-center justify-center group-hover:bg-amber-500 group-hover:border-amber-500 transition-all duration-300 shadow-sm flex-shrink-0">
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                             </div>
+                        </div>
+
+                        <!-- Bottom Content: Typography, Specs & Explore CTA -->
+                        <div class="relative z-10 transform transition-transform duration-300 group-hover:-translate-y-0.5">
+                            @if($tileType === 'hero')
+                                <div class="max-w-md">
+                                    <h3 class="text-xl sm:text-3xl lg:text-4xl font-extrabold font-heading text-white tracking-tight group-hover:text-amber-400 transition-colors drop-shadow-md mb-2">
+                                        {{ $cat->name }}
+                                    </h3>
+                                    <p class="text-xs sm:text-sm text-slate-300 font-medium mb-4 line-clamp-2 leading-relaxed">
+                                        Comprehensive OEM manufacturing, bespoke finishes, and certified sustainable apparel trims.
+                                    </p>
+                                    
+                                    <div class="flex items-center gap-2">
+                                        <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 group-hover:from-amber-600 group-hover:to-amber-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-amber-500/25 transition-all">
+                                            <span>Explore Collection</span>
+                                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                                        </span>
+                                    </div>
+                                </div>
+                            @elseif($tileType === 'wide')
+                                <div>
+                                    <h3 class="text-base sm:text-xl lg:text-2xl font-bold font-heading text-white tracking-tight group-hover:text-amber-400 transition-colors drop-shadow-sm mb-1 line-clamp-1">
+                                        {{ $cat->name }}
+                                    </h3>
+                                    <p class="text-[11px] sm:text-xs text-slate-300 font-medium mb-2.5 line-clamp-1">
+                                        Custom OEM production & wholesale supply
+                                    </p>
+                                    <div class="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold text-amber-400 group-hover:text-amber-300 transition-colors">
+                                        <span>Explore Category</span>
+                                        <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                                    </div>
+                                </div>
+                            @else
+                                <div>
+                                    <h3 class="text-sm sm:text-lg lg:text-xl font-bold font-heading text-white tracking-tight group-hover:text-amber-400 transition-colors drop-shadow-sm mb-0.5 sm:mb-1 line-clamp-1">
+                                        {{ $cat->name }}
+                                    </h3>
+                                    <p class="text-[11px] sm:text-xs text-slate-300 font-medium mb-2 line-clamp-1">
+                                        Custom OEM production
+                                    </p>
+                                    <div class="inline-flex items-center gap-1 text-[10px] sm:text-xs font-bold text-amber-400 group-hover:text-amber-300 transition-colors">
+                                        <span>Explore</span>
+                                        <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </a>
                 @endforeach

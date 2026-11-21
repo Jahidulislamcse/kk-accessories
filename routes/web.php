@@ -117,11 +117,17 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::prefix('gallery')->name('gallery.')->group(function () {
             Route::get('/', [GalleryController::class, 'index'])->name('index');
             Route::get('/create', [GalleryController::class, 'create'])->name('create');
+            Route::post('/', [GalleryController::class, 'store']);
             Route::post('/store', [GalleryController::class, 'store'])->name('store');
-            Route::get('/{gallery}/edit', [GalleryController::class, 'edit'])->name('edit');      // Edit route
-            Route::put('/{gallery}/update', [GalleryController::class, 'update'])->name('update'); // Update route
+            Route::get('/{gallery}/edit', [GalleryController::class, 'edit'])->name('edit');
+            Route::put('/{gallery}', [GalleryController::class, 'update']);
+            Route::put('/{gallery}/update', [GalleryController::class, 'update'])->name('update');
+            Route::delete('/{gallery}', [GalleryController::class, 'destroy']);
             Route::delete('/{gallery}/delete', [GalleryController::class, 'destroy'])->name('destroy');
         });
+
+        // Backward compatibility alias for legacy route reference
+        Route::get('gallery-alias', [GalleryController::class, 'index'])->name('gallery.index');
 
     });
 });

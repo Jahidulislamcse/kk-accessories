@@ -5,6 +5,10 @@
 <div class="container mt-4 px-5">
     <h4>Managing Body</h4>
 
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
     @if($bodies->isEmpty())
         <a href="{{ route('admin.managing-body.create') }}" class="btn btn-primary mb-4">Add Managing Body</a>
     @endif
@@ -21,7 +25,7 @@
             </tr>
         </thead>
         <tbody>
-            @php $body = $bodies->first(); @endphp
+            @foreach($bodies as $body)
             <tr>
                 <td>{{ $body->director }}</td>
                 <td>
@@ -35,8 +39,14 @@
                 <td>{{ Str::limit($body->team_structure, 50) }}</td>
                 <td>
                     <a href="{{ route('admin.managing-body.edit', $body->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                    <form action="{{ route('admin.managing-body.destroy', $body->id) }}" method="POST" class="d-inline-block" onsubmit="return confirm('Are you sure you want to delete this record?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
                 </td>
             </tr>
+            @endforeach
         </tbody>
     </table>
     @else

@@ -36,8 +36,12 @@ class GalleryController extends Controller
         $imagePath = null;
 
         if ($request->hasFile('image')) {
+            $destDir = public_path('upload/galleries');
+            if (!File::isDirectory($destDir)) {
+                File::makeDirectory($destDir, 0755, true, true);
+            }
             $imageName = time() . '_' . $request->file('image')->getClientOriginalName();
-            $request->file('image')->move(public_path('upload/galleries'), $imageName);
+            $request->file('image')->move($destDir, $imageName);
             $imagePath = 'galleries/' . $imageName;
         }
 
@@ -64,13 +68,22 @@ class GalleryController extends Controller
         $imagePath = $gallery->image;
 
         if ($request->hasFile('image')) {
-            if ($imagePath && File::exists(public_path('upload/' . $imagePath))) {
-                File::delete(public_path('upload/' . $imagePath));
+            if ($imagePath) {
+                if (File::exists(public_path('upload/' . $imagePath))) {
+                    File::delete(public_path('upload/' . $imagePath));
+                }
+                if (File::exists(base_path('upload/' . $imagePath))) {
+                    File::delete(base_path('upload/' . $imagePath));
+                }
             }
 
+            $destDir = public_path('upload/galleries');
+            if (!File::isDirectory($destDir)) {
+                File::makeDirectory($destDir, 0755, true, true);
+            }
             $imageName = time() . '_' . $request->file('image')->getClientOriginalName();
-            $request->file('image')->move(public_path('upload/gallery'), $imageName);
-            $imagePath = 'gallery/' . $imageName;
+            $request->file('image')->move($destDir, $imageName);
+            $imagePath = 'galleries/' . $imageName;
         }
 
         $gallery->update([
@@ -83,12 +96,17 @@ class GalleryController extends Controller
 
     public function destroy(Gallery $gallery)
     {
-        if ($gallery->image && File::exists(public_path('upload/' . $gallery->image))) {
-            File::delete(public_path('upload/' . $gallery->image));
+        if ($gallery->image) {
+            if (File::exists(public_path('upload/' . $gallery->image))) {
+                File::delete(public_path('upload/' . $gallery->image));
+            }
+            if (File::exists(base_path('upload/' . $gallery->image))) {
+                File::delete(base_path('upload/' . $gallery->image));
+            }
         }
 
         $gallery->delete();
 
-        return redirect()->route('gallery.index')->with('success', 'Image deleted successfully!');
+        return redirect()->route('admin.gallery.index')->with('success', 'Image deleted successfully!');
     }
 }
